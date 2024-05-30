@@ -1,3 +1,28 @@
 .App {
   text-align: center;
 }
+
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: .2rem;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.filter-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.table-container {
+display: flex;
+justify-content: center;
+}
