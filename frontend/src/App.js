@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import './App.css';
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
     }
   };
 
-  const filterData = (searchTerm, teams, positions, divisions) => {
+  const filterData = useCallback((searchTerm, teams, positions, divisions) => {
     let filtered = data.filter(item =>
       (item.Name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '') &&
       (teams.length === 0 || teams.includes(item.Team)) &&
@@ -50,7 +50,7 @@ function App() {
       (divisions.length === 0 || divisions.includes(item.Division) || (item.Division === null && divisions.includes('FA')))
     );
     setFilteredData(filtered);
-  };
+  }, [data]);
 
   useEffect(() => {
     filterData(searchTerm, selectedTeams, selectedPositions, selectedDivisions);
