@@ -53,7 +53,7 @@ function App() {
 
   useEffect(() => {
     filterData(searchTerm, selectedTeams, selectedPositions, selectedDivisions);
-  }, [searchTerm, selectedTeams, selectedPositions, selectedDivisions, filterData]);
+  }, [searchTerm, selectedTeams, selectedPositions, selectedDivisions]);
 
   const handleSort = (key) => {
     let direction = 'ascending';
