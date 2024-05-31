@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: bestball-backend
+    env: python
+    plan: free
+    buildCommand: "pip install -r backend/requirements.txt"
+    startCommand: "python backend/app.py"
+    autoDeploy: true
+
+  - type: web
+    name: bestball-frontend
+    env: node
+    plan: free
+    buildCommand: "cd frontend && npm install"
+    startCommand: "cd frontend && npm start"
+    autoDeploy: true
+  
