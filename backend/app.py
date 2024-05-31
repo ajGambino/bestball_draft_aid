@@ -1,13 +1,17 @@
 from flask import Flask, jsonify
 import pandas as pd
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
 
+# Define the path to the CSV file
+csv_file_path = os.path.join(os.path.dirname(__file__), 'csvs', 'draft_table.csv')
+
 # Load draft_table.csv into a DataFrame
-draft_table_df = pd.read_csv(r"C:\Users\kenco\OneDrive\Documents\GitHub\bestball_draft_aid\backend\csvs\draft_table.csv")
-  
+draft_table_df = pd.read_csv(csv_file_path)
+
 # Fix NaN error for JSON
 draft_table_df = draft_table_df.where(pd.notnull(draft_table_df), None)
 
@@ -22,4 +26,6 @@ def get_draft_table():
     return jsonify(draft_table_df.to_dict(orient='records'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Get the port from the environment, or use 5000 as a default
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
