@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 CORS(app)
-
+ 
 # Define the path to the CSV file
 csv_file_path = os.path.join(os.path.dirname(__file__), 'csvs', 'draft_table.csv')
 

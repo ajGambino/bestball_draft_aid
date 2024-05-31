@@ -10,14 +10,17 @@ function App() {
   const [selectedDivisions, setSelectedDivisions] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
 
+  const apiUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_API_URL_LOCAL : process.env.REACT_APP_API_URL;
+
   useEffect(() => {
-    fetch('https://bestball-draft-aid.onrender.com/api/draft-table')
+    fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         setData(data);
         setFilteredData(data);
       });
   }, []);
+  
 
   const clearFilters = () => {
     setSelectedTeams([]);
