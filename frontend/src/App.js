@@ -11,7 +11,7 @@ function App() {
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
 
   useEffect(() => {
-    fetch('/api/draft-table')
+    fetch('https://bestball-draft-aid.onrender.com/api/draft-table/api/draft-table')
       .then(response => response.json())
       .then(data => {
         setData(data);
