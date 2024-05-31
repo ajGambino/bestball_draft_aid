@@ -11,7 +11,7 @@ function App() {
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/api/draft-table')
+    fetch('/api/draft-table')
       .then(response => response.json())
       .then(data => {
         setData(data);
