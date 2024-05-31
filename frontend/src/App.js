@@ -10,10 +10,8 @@ function App() {
   const [selectedDivisions, setSelectedDivisions] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
 
-  const apiUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_API_URL_LOCAL : process.env.REACT_APP_API_URL;
-
   useEffect(() => {
-    fetch(apiUrl)
+    fetch(process.env.REACT_APP_API_URL)
       .then(response => response.json())
       .then(data => {
         setData(data);
