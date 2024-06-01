@@ -52,7 +52,7 @@ function App() {
     setFilteredData(filtered);
   }, [data]);
 
-  useEffect(() => {
+  useEffect(() => { 
     filterData(searchTerm, selectedTeams, selectedPositions, selectedDivisions);
   }, [searchTerm, selectedTeams, selectedPositions, selectedDivisions, filterData]);
 
