@@ -152,10 +152,10 @@ function App() {
             <th onClick={() => handleSort('Rank')}>Rank</th>
             <th onClick={() => handleSort('ADP')}>ADP</th>
             <th onClick={() => handleSort('ADP Differential')}>+/-</th>
-            <th>Week 17</th>
-            <th>Week 16</th>
-            <th>Week 15</th>
-            <th>Division</th>
+            <th>Wk 17</th>
+            <th>Wk 16</th>
+            <th>Wk 15</th>
+            <th>Div.</th>
             <th onClick={() => handleSort('Exposure')}>Exposure</th>
           </tr>
         </thead>
