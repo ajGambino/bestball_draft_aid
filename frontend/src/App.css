@@ -1,26 +1,33 @@
+/* General styling for the app */
 .App {
   text-align: center;
+  padding: 1rem;
 }
 
+/* Container for the filters */
 .filters-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
+/* Individual filter styling */
 .filter {
   display: flex;
   flex-direction: column;
   width: 30%;
+  margin: 0.5rem;
 }
 
+/* Styling for filter items */
 .filter-items {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
+/* Container for the table */
 .table-container {
   width: 100%;
   overflow-y: auto; /* Enable vertical scrolling */
@@ -32,7 +39,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* Optional: To prevent table from resizing based on content */
+  table-layout: fixed; /* Prevent the table from resizing based on content */
 }
 
 /* Styling for table headers and cells */
@@ -40,6 +47,10 @@ th, td {
   padding: 8px;
   text-align: left;
   border: 1px solid #ddd;
+  word-wrap: break-word; /* Ensure long words break to fit the cell */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflowing text */
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
 th {
