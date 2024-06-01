@@ -151,7 +151,7 @@ function App() {
             <th>Pos</th>
             <th onClick={() => handleSort('Rank')}>Rank</th>
             <th onClick={() => handleSort('ADP')}>ADP</th>
-            <th onClick={() => handleSort('ADP Differential')}>Differential</th>
+            <th onClick={() => handleSort('ADP Differential')}>+/-</th>
             <th>Week 17</th>
             <th>Week 16</th>
             <th>Week 15</th>
