@@ -21,8 +21,43 @@
   justify-content: center;
 }
 
-
 .table-container {
-display: flex;
-justify-content: center;
+  width: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+  margin-top: 1rem;
+  max-height: 70vh; /* Adjust based on your preference */
+}
+
+/* Make the table responsive */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Optional: To prevent table from resizing based on content */
+}
+
+/* Styling for table headers and cells */
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  cursor: pointer; /* Show pointer cursor for sortable headers */
+}
+
+/* Ensure the table fits within the viewport on mobile devices */
+@media (max-width: 768px) {
+  .filter {
+    width: 100%;
+  }
+
+  table {
+    font-size: 0.8rem; /* Adjust font size for better readability on smaller screens */
+  }
+
+  th, td {
+    padding: 4px; /* Adjust padding for smaller screens */
+  }
 }
