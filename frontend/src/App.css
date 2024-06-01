@@ -39,18 +39,16 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* Prevent the table from resizing based on content */
+  table-layout: auto; /* Allow table to adjust column widths based on content */
 }
 
 /* Styling for table headers and cells */
 th, td {
   padding: 8px;
-  text-align: left;
+  text-align: center; /* Center align text in headers and cells */
   border: 1px solid #ddd;
   word-wrap: break-word; /* Ensure long words break to fit the cell */
   overflow: hidden; /* Hide overflow text */
-  text-overflow: ellipsis; /* Add ellipsis (...) for overflowing text */
-  white-space: nowrap; /* Prevent text from wrapping */
 }
 
 th {
