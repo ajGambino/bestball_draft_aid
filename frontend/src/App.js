@@ -8,6 +8,8 @@ function App() {
   const [selectedTeams, setSelectedTeams] = useState([]);
   const [selectedPositions, setSelectedPositions] = useState([]);
   const [selectedDivisions, setSelectedDivisions] = useState([]);
+  const [minADP, setMinADP] = useState('');
+  const [maxADP, setMaxADP] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
 
   useEffect(() => {
@@ -24,12 +26,24 @@ function App() {
     setSelectedPositions([]);
     setSelectedDivisions([]);
     setSearchTerm('');
-    filterData('', [], [], []);
+    setMinADP('');
+    setMaxADP('');
+    filterData('', [], [], '', '');
   };
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    filterData(e.target.value, selectedTeams, selectedPositions, selectedDivisions);
+    filterData(e.target.value, selectedTeams, selectedPositions, selectedDivisions, minADP, maxADP);
+  };
+
+  const handleMinADPChange = (e) => {
+    setMinADP(e.target.value);
+    filterData(searchTerm, selectedTeams, selectedPositions, selectedDivisions, e.target.value, maxADP);
+  };
+
+  const handleMaxADPChange = (e) => {
+    setMaxADP(e.target.value);
+    filterData(searchTerm, selectedTeams, selectedPositions, selectedDivisions, minADP, e.target.value);
   };
 
   const handleCheckboxChange = (e, setSelected, selectedList) => {
@@ -41,19 +55,21 @@ function App() {
     }
   };
 
-  const filterData = useCallback((searchTerm, teams, positions, divisions) => {
+  const filterData = useCallback((searchTerm, teams, positions, divisions, minADP, maxADP) => {
     let filtered = data.filter(item =>
       (item.Name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '') &&
       (teams.length === 0 || teams.includes(item.Team)) &&
       (positions.length === 0 || positions.includes(item.Position)) &&
-      (divisions.length === 0 || divisions.includes(item.Division) || (item.Division === null && divisions.includes('FA')))
+      (divisions.length === 0 || divisions.includes(item.Division) || (item.Division === null && divisions.includes('FA'))) &&
+      (minADP === '' || item.ADP >= parseFloat(minADP)) &&
+      (maxADP === '' || item.ADP <= parseFloat(maxADP))
     );
     setFilteredData(filtered);
   }, [data]);
 
   useEffect(() => {
-    filterData(searchTerm, selectedTeams, selectedPositions, selectedDivisions);
-  }, [searchTerm, selectedTeams, selectedPositions, selectedDivisions, filterData]);
+    filterData(searchTerm, selectedTeams, selectedPositions, selectedDivisions, minADP, maxADP);
+  }, [searchTerm, selectedTeams, selectedPositions, selectedDivisions, minADP, maxADP, filterData]);
 
   const handleSort = (key) => {
     let direction = 'ascending';
@@ -103,6 +119,21 @@ function App() {
         onChange={handleSearch}
       />
       <button onClick={clearFilters}>Clear Filters</button>
+      {/* Min and Max ADP inputs */}
+      <div className="adp-filter-container">
+        <input
+          type="number"
+          placeholder="Min ADP"
+          value={minADP}
+          onChange={handleMinADPChange}
+        />
+        <input
+          type="number"
+          placeholder="Max ADP"
+          value={maxADP}
+          onChange={handleMaxADPChange}
+        />
+      </div>
       {/* Filter checkboxes */}
       <div className="filters-container">
         <div className="filter">

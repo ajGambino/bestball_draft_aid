@@ -27,6 +27,19 @@
   justify-content: center;
 }
 
+/* Container for the ADP filters */
+.adp-filter-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.adp-filter-container input {
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
 /* Container for the table */
 .table-container {
   width: 100%;
