@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import './App.css';
 
 function App() {
   const [data, setData] = useState([]);
@@ -148,12 +149,12 @@ function App() {
               <th>Pos</th>
               <th className={sortConfig.key === 'Rank' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Rank')}>Rank</th>
               <th className={sortConfig.key === 'ADP' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP')}>ADP</th>
-              <th className={sortConfig.key === 'ADP Differential' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP Differential')}>Differential</th>
-              <th>Week 17</th>
-              <th>Week 16</th>
-              <th>Week 15</th>
-              <th>Division</th>
-              <th className={sortConfig.key === 'Exposure' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Exposure')}>Exposure</th>
+              <th className={sortConfig.key === 'ADP Differential' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP Differential')}>+/-</th>
+              <th>Wk 17</th>
+              <th>Wk 16</th>
+              <th>Wk 15</th>
+              <th>Div</th>
+              <th className={sortConfig.key === 'Exposure' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Exposure')}>Exp.</th>
             </tr>
           </thead>
           <tbody>
