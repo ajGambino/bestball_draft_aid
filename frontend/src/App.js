@@ -7,6 +7,8 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTeams, setSelectedTeams] = useState([]);
   const [selectedPositions, setSelectedPositions] = useState([]);
+  const [minADP, setMinADP] = useState('');
+  const [maxADP, setMaxADP] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
 
   useEffect(() => {
@@ -22,12 +24,24 @@ function App() {
     setSelectedTeams([]);
     setSelectedPositions([]);
     setSearchTerm('');
+    setMinADP('');
+    setMaxADP('');
     filterData('', [], []);
   };
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    filterData(e.target.value, selectedTeams, selectedPositions);
+    filterData(e.target.value, selectedTeams, selectedPositions, minADP, maxADP);
+  };
+
+  const handleMinADPChange = (e) => {
+    setMinADP(e.target.value);
+    filterData(searchTerm, selectedTeams, selectedPositions, e.target.value, maxADP);
+  };
+
+  const handleMaxADPChange = (e) => {
+    setMaxADP(e.target.value);
+    filterData(searchTerm, selectedTeams, selectedPositions, minADP, e.target.value);
   };
 
   const handleCheckboxChange = (e, setSelected, selectedList) => {
@@ -39,18 +53,20 @@ function App() {
     }
   };
 
-  const filterData = useCallback((searchTerm, teams, positions) => {
+  const filterData = useCallback((searchTerm, teams, positions, minADP, maxADP) => {
     let filtered = data.filter(item =>
       (item.Name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '') &&
       (teams.length === 0 || teams.includes(item.Team)) &&
-      (positions.length === 0 || positions.includes(item.Position))
+      (positions.length === 0 || positions.includes(item.Position)) &&
+      (minADP === '' || item.ADP >= parseFloat(minADP)) &&
+      (maxADP === '' || item.ADP <= parseFloat(maxADP))
     );
     setFilteredData(filtered);
   }, [data]);
 
   useEffect(() => {
-    filterData(searchTerm, selectedTeams, selectedPositions);
-  }, [searchTerm, selectedTeams, selectedPositions, filterData]);
+    filterData(searchTerm, selectedTeams, selectedPositions, minADP, maxADP);
+  }, [searchTerm, selectedTeams, selectedPositions, minADP, maxADP, filterData]);
 
   const handleSort = (key) => {
     let direction = 'ascending';
@@ -74,6 +90,21 @@ function App() {
     setFilteredData(sorted);
   };
 
+  const getRowClass = (position) => {
+    switch (position) {
+      case 'RB':
+        return 'row-rb';
+      case 'QB':
+        return 'row-qb';
+      case 'WR':
+        return 'row-wr';
+      case 'TE':
+        return 'row-te';
+      default:
+        return '';
+    }
+  };
+
   return (
     <div className="App">
       <h1>Draft Caddy</h1>
@@ -85,6 +116,23 @@ function App() {
         onChange={handleSearch}
       />
       <button onClick={clearFilters}>Clear Filters</button>
+      {/* Min and Max ADP inputs */}
+      <div className="adp-filter-container">
+        <input
+          type="number"
+          placeholder="Min ADP"
+          value={minADP}
+          onChange={handleMinADPChange}
+          className="adp-input"
+        />
+        <input
+          type="number"
+          placeholder="Max ADP"
+          value={maxADP}
+          onChange={handleMaxADPChange}
+          className="adp-input"
+        />
+      </div>
       {/* Filter checkboxes */}
       <div className="filters-container">
         <div className="filter">
@@ -138,7 +186,7 @@ function App() {
           </thead>
           <tbody>
             {filteredData.map((item, index) => (
-              <tr key={index} className={getColorClass(item.Position)}>
+              <tr key={index} className={getRowClass(item.Position)}>
                 <td>{item.Team}</td>
                 <td>{item.Name}</td>
                 <td>{item.Position}</td>
@@ -155,22 +203,6 @@ function App() {
       </div>
     </div>
   );
-}
-
-// Function to get color class based on position
-function getColorClass(position) {
-  switch (position) {
-    case 'RB':
-      return 'light-blue';
-    case 'QB':
-      return 'light-red';
-    case 'WR':
-      return 'light-green';
-    case 'TE':
-      return 'light-orange';
-    default:
-      return '';
-  }
 }
 
 export default App;
