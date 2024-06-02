@@ -26,7 +26,7 @@ function App() {
     setSearchTerm('');
     setMinADP('');
     setMaxADP('');
-    filterData('', [], []);
+    filterData('', [], [], '', '');
   };
 
   const handleSearch = (e) => {
@@ -182,6 +182,7 @@ function App() {
               <th>Wk 17</th>
               <th>Wk 16</th>
               <th>Wk 15</th>
+              <th className={sortConfig.key === 'Exposure' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Exposure')}>Exp.</th>
             </tr>
           </thead>
           <tbody>
@@ -196,6 +197,7 @@ function App() {
                 <td>{item['Week 17']}</td>
                 <td>{item['Week 16']}</td>
                 <td>{item['Week 15']}</td>
+                <td>{item.Exposure + "%"}</td>
               </tr>
             ))}
           </tbody>
