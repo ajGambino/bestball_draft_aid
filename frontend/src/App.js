@@ -5,8 +5,6 @@ function App() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [minADP, setMinADP] = useState('');
-  const [maxADP, setMaxADP] = useState('');
   const [selectedTeams, setSelectedTeams] = useState([]);
   const [selectedPositions, setSelectedPositions] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
@@ -24,24 +22,12 @@ function App() {
     setSelectedTeams([]);
     setSelectedPositions([]);
     setSearchTerm('');
-    setMinADP('');
-    setMaxADP('');
-    filterData('', [], '');
+    filterData('', [], []);
   };
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    filterData(e.target.value, selectedTeams, selectedPositions, minADP, maxADP);
-  };
-
-  const handleMinADPChange = (e) => {
-    setMinADP(e.target.value);
-    filterData(searchTerm, selectedTeams, selectedPositions, e.target.value, maxADP);
-  };
-
-  const handleMaxADPChange = (e) => {
-    setMaxADP(e.target.value);
-    filterData(searchTerm, selectedTeams, selectedPositions, minADP, e.target.value);
+    filterData(e.target.value, selectedTeams, selectedPositions);
   };
 
   const handleCheckboxChange = (e, setSelected, selectedList) => {
@@ -53,20 +39,18 @@ function App() {
     }
   };
 
-  const filterData = useCallback((searchTerm, teams, positions, minADP, maxADP) => {
+  const filterData = useCallback((searchTerm, teams, positions) => {
     let filtered = data.filter(item =>
       (item.Name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '') &&
       (teams.length === 0 || teams.includes(item.Team)) &&
-      (positions.length === 0 || positions.includes(item.Position)) &&
-      (minADP === '' || Number(item.ADP) >= Number(minADP)) &&
-      (maxADP === '' || Number(item.ADP) <= Number(maxADP))
+      (positions.length === 0 || positions.includes(item.Position))
     );
     setFilteredData(filtered);
   }, [data]);
 
   useEffect(() => {
-    filterData(searchTerm, selectedTeams, selectedPositions, minADP, maxADP);
-  }, [searchTerm, selectedTeams, selectedPositions, minADP, maxADP, filterData]);
+    filterData(searchTerm, selectedTeams, selectedPositions);
+  }, [searchTerm, selectedTeams, selectedPositions, filterData]);
 
   const handleSort = (key) => {
     let direction = 'ascending';
@@ -101,23 +85,6 @@ function App() {
         onChange={handleSearch}
       />
       <button onClick={clearFilters}>Clear Filters</button>
-      {/* Min and Max ADP inputs */}
-      <div className="adp-filter-container">
-        <input
-          type="number"
-          placeholder="Min. ADP"
-          value={minADP}
-          onChange={handleMinADPChange}
-          style={{ width: '80px' }} // Adjust width here
-        />
-        <input
-          type="number"
-          placeholder="Max. ADP"
-          value={maxADP}
-          onChange={handleMaxADPChange}
-          style={{ width: '80px' }} // Adjust width here
-        />
-      </div>
       {/* Filter checkboxes */}
       <div className="filters-container">
         <div className="filter">
@@ -153,41 +120,57 @@ function App() {
           </div>
         </div>
       </div>
-{/* Table */}
-<div className="table-container">
-  <table>
-    <thead>
-      <tr>
-        <th>Team</th>
-        <th>Name</th>
-        <th>Pos</th>
-        <th className={sortConfig.key === 'Rank' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Rank')}>Rank</th>
-        <th className={sortConfig.key === 'ADP' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP')}>ADP</th>
-        <th className={sortConfig.key === 'ADP Differential' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP Differential')}>+/-</th>
-        <th>Wk 17</th>
-        <th>Wk 16</th>
-        <th>Wk 15</th>
-      </tr>
-    </thead>
-    <tbody>
-      {filteredData.map((item, index) => (
-        <tr key={index}>
-          <td>{item.Team}</td>
-          <td>{item.Name}</td>
-          <td>{item.Position}</td>
-          <td>{item.Rank}</td>
-          <td>{item.ADP}</td>
-          <td>{item['ADP Differential']}</td>
-          <td>{item['Week 17']}</td>
-          <td>{item['Week 16']}</td>
-          <td>{item['Week 15']}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-</div>
-);
+      {/* Table */}
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Name</th>
+              <th>Pos</th>
+              <th className={sortConfig.key === 'Rank' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Rank')}>Rank</th>
+              <th className={sortConfig.key === 'ADP' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP')}>ADP</th>
+              <th className={sortConfig.key === 'ADP Differential' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP Differential')}>+/-</th>
+              <th>Wk 17</th>
+              <th>Wk 16</th>
+              <th>Wk 15</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredData.map((item, index) => (
+              <tr key={index} className={getColorClass(item.Position)}>
+                <td>{item.Team}</td>
+                <td>{item.Name}</td>
+                <td>{item.Position}</td>
+                <td>{item.Rank}</td>
+                <td>{item.ADP}</td>
+                <td>{item['ADP Differential']}</td>
+                <td>{item['Week 17']}</td>
+                <td>{item['Week 16']}</td>
+                <td>{item['Week 15']}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+// Function to get color class based on position
+function getColorClass(position) {
+  switch (position) {
+    case 'RB':
+      return 'light-blue';
+    case 'QB':
+      return 'light-red';
+    case 'WR':
+      return 'light-green';
+    case 'TE':
+      return 'light-orange';
+    default:
+      return '';
+  }
 }
 
 export default App;
