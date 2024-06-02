@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './App.css';
 
 function App() {
   const [data, setData] = useState([]);
@@ -65,12 +64,16 @@ function App() {
   };
 
   const sortData = (key, direction) => {
-    const sortedData = [...filteredData].sort((a, b) => {
-      if (a[key] < b[key]) return direction === 'ascending' ? -1 : 1;
-      if (a[key] > b[key]) return direction === 'ascending' ? 1 : -1;
+    let sorted = [...filteredData].sort((a, b) => {
+      if (a[key] < b[key]) {
+        return direction === 'ascending' ? -1 : 1;
+      }
+      if (a[key] > b[key]) {
+        return direction === 'ascending' ? 1 : -1;
+      }
       return 0;
     });
-    setFilteredData(sortedData);
+    setFilteredData(sorted);
   };
 
   return (
@@ -135,7 +138,6 @@ function App() {
           </div>
         </div>
       </div>
-
       {/* Table */}
       <div className="table-container">
         <table>
@@ -144,14 +146,14 @@ function App() {
               <th>Team</th>
               <th>Name</th>
               <th>Pos</th>
-              <th onClick={() => handleSort('Rank')}>Rank</th>
-              <th onClick={() => handleSort('ADP')}>ADP</th>
-              <th onClick={() => handleSort('ADP Differential')}>+/-</th>
-              <th>Wk 17</th>
-              <th>Wk 16</th>
-              <th>Wk 15</th>
-              <th>Div</th>
-              <th onClick={() => handleSort('Exposure')}>Exposure</th>
+              <th className={sortConfig.key === 'Rank' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Rank')}>Rank</th>
+              <th className={sortConfig.key === 'ADP' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP')}>ADP</th>
+              <th className={sortConfig.key === 'ADP Differential' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP Differential')}>Differential</th>
+              <th>Week 17</th>
+              <th>Week 16</th>
+              <th>Week 15</th>
+              <th>Division</th>
+              <th className={sortConfig.key === 'Exposure' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Exposure')}>Exposure</th>
             </tr>
           </thead>
           <tbody>

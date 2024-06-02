@@ -49,6 +49,7 @@ th, td {
   border: 1px solid #ddd;
   word-wrap: break-word; /* Ensure long words break to fit the cell */
   overflow: hidden; /* Hide overflow text */
+  position: relative; /* For positioning the arrow icons */
 }
 
 th {
@@ -57,6 +58,24 @@ th {
   position: sticky;
   top: 0; /* Stick to the top */
   z-index: 1; /* Ensure headers are above the table content */
+}
+
+th::after {
+  content: '\2191'; /* Default to up arrow */
+  position: absolute;
+  right: 8px; /* Adjust to fit your padding */
+  font-size: 0.8em;
+  display: none; /* Hide by default */
+}
+
+th.sorted-asc::after {
+  content: '\2191'; /* Up arrow */
+  display: inline;
+}
+
+th.sorted-desc::after {
+  content: '\2193'; /* Down arrow */
+  display: inline;
 }
 
 /* Ensure the table fits within the viewport on mobile devices */
