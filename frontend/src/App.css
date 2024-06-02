@@ -67,6 +67,9 @@ th, td {
 th {
   background-color: #f2f2f2;
   cursor: pointer; /* Show pointer cursor for sortable headers */
+  position: sticky; /* Make headers sticky */
+  top: 0; /* Position at the top of the viewport */
+  z-index: 1; /* Ensure headers appear above other content */
 }
 
 th::after {
