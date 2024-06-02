@@ -49,33 +49,25 @@ th, td {
   border: 1px solid #ddd;
   word-wrap: break-word; /* Ensure long words break to fit the cell */
   overflow: hidden; /* Hide overflow text */
-  position: relative; /* For positioning the arrow icons */
 }
 
 th {
   background-color: #f2f2f2;
   cursor: pointer; /* Show pointer cursor for sortable headers */
-  position: sticky;
-  top: 0; /* Stick to the top */
-  z-index: 1; /* Ensure headers are above the table content */
 }
 
 th::after {
-  content: '\2191'; /* Default to up arrow */
-  position: absolute;
-  right: 8px; /* Adjust to fit your padding */
-  font-size: 0.8em;
-  display: none; /* Hide by default */
+  content: ' ';
+  margin-left: 0.5rem;
+  border: 4px solid transparent;
 }
 
-th.sorted-asc::after {
-  content: '\2191'; /* Up arrow */
-  display: inline;
+.sorted-asc::after {
+  border-bottom-color: #000;
 }
 
-th.sorted-desc::after {
-  content: '\2193'; /* Down arrow */
-  display: inline;
+.sorted-desc::after {
+  border-top-color: #000;
 }
 
 /* Ensure the table fits within the viewport on mobile devices */
@@ -91,4 +83,21 @@ th.sorted-desc::after {
   th, td {
     padding: 4px; /* Adjust padding for smaller screens */
   }
+}
+
+/* Row color based on position */
+.row-rb {
+  background-color: #e0f7fa; /* Light blue for RB */
+}
+
+.row-qb {
+  background-color: #ffebee; /* Light red for QB */
+}
+
+.row-wr {
+  background-color: #e8f5e9; /* Light green for WR */
+}
+
+.row-te {
+  background-color: #fff3e0; /* Light orange for TE */
 }

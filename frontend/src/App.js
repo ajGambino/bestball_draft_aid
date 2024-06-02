@@ -77,6 +77,21 @@ function App() {
     setFilteredData(sorted);
   };
 
+  const getRowClass = (position) => {
+    switch (position) {
+      case 'RB':
+        return 'row-rb';
+      case 'QB':
+        return 'row-qb';
+      case 'WR':
+        return 'row-wr';
+      case 'TE':
+        return 'row-te';
+      default:
+        return '';
+    }
+  };
+
   return (
     <div className="App">
       <h1>Draft Caddy</h1>
@@ -159,7 +174,7 @@ function App() {
           </thead>
           <tbody>
             {filteredData.map((item, index) => (
-              <tr key={index}>
+              <tr key={index} className={getRowClass(item.Position)}>
                 <td>{item.Team}</td>
                 <td>{item.Name}</td>
                 <td>{item.Position}</td>
