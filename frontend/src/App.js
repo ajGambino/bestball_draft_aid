@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import './App.css';
+import React, { useState, useEffect, useCallback } from 'react';
 
 function App() {
   const [data, setData] = useState([]);
@@ -18,7 +17,6 @@ function App() {
         setFilteredData(data);
       });
   }, []);
-  
 
   const clearFilters = () => {
     setSelectedTeams([]);
@@ -52,7 +50,7 @@ function App() {
     setFilteredData(filtered);
   }, [data]);
 
-  useEffect(() => { 
+  useEffect(() => {
     filterData(searchTerm, selectedTeams, selectedPositions, selectedDivisions);
   }, [searchTerm, selectedTeams, selectedPositions, selectedDivisions, filterData]);
 
@@ -66,16 +64,12 @@ function App() {
   };
 
   const sortData = (key, direction) => {
-    const sorted = [...filteredData].sort((a, b) => {
-      if (a[key] < b[key]) {
-        return direction === 'ascending' ? -1 : 1;
-      }
-      if (a[key] > b[key]) {
-        return direction === 'ascending' ? 1 : -1;
-      }
+    const sortedData = [...filteredData].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'ascending' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'ascending' ? 1 : -1;
       return 0;
     });
-    setFilteredData(sorted);
+    setFilteredData(sortedData);
   };
 
   return (
@@ -88,13 +82,13 @@ function App() {
         value={searchTerm}
         onChange={handleSearch}
       />
-       <button onClick={clearFilters}>Clear Filters</button>
+      <button onClick={clearFilters}>Clear Filters</button>
       {/* Filter checkboxes */}
       <div className="filters-container">
         <div className="filter">
           <label>Teams:</label>
           <div className="filter-items">
-            {Array.from(new Set(data.map(item => item.Team))).map((team, index) => (
+            {Array.from(new Set(data.map(item => item.Team))).sort().map((team, index) => (
               <div key={index}>
                 <input
                   type="checkbox"
@@ -140,46 +134,46 @@ function App() {
           </div>
         </div>
       </div>
-  
+
       {/* Table */}
       <div className="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th>Name</th>
-            <th>Pos</th>
-            <th onClick={() => handleSort('Rank')}>Rank</th>
-            <th onClick={() => handleSort('ADP')}>ADP</th>
-            <th onClick={() => handleSort('ADP Differential')}>+/-</th>
-            <th>Wk 17</th>
-            <th>Wk 16</th>
-            <th>Wk 15</th>
-            <th>Div.</th>
-            <th onClick={() => handleSort('Exposure')}>Exposure</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.Team}</td>
-              <td>{item.Name}</td>
-              <td>{item.Position}</td>
-              <td>{item.Rank}</td>
-              <td>{item.ADP}</td>
-              <td>{item['ADP Differential']}</td>
-              <td>{item['Week 17']}</td>
-              <td>{item['Week 16']}</td>
-              <td>{item['Week 15']}</td>
-              <td>{item.Division}</td>
-              <td>{item.Exposure + "%"}</td>
+        <table>
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Name</th>
+              <th>Pos</th>
+              <th onClick={() => handleSort('Rank')}>Rank</th>
+              <th onClick={() => handleSort('ADP')}>ADP</th>
+              <th onClick={() => handleSort('ADP Differential')}>+/-</th>
+              <th>Wk 17</th>
+              <th>Wk 16</th>
+              <th>Wk 15</th>
+              <th>Div</th>
+              <th onClick={() => handleSort('Exposure')}>Exposure</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div></div>
+          </thead>
+          <tbody>
+            {filteredData.map((item, index) => (
+              <tr key={index}>
+                <td>{item.Team}</td>
+                <td>{item.Name}</td>
+                <td>{item.Position}</td>
+                <td>{item.Rank}</td>
+                <td>{item.ADP}</td>
+                <td>{item['ADP Differential']}</td>
+                <td>{item['Week 17']}</td>
+                <td>{item['Week 16']}</td>
+                <td>{item['Week 15']}</td>
+                <td>{item.Division}</td>
+                <td>{item.Exposure + "%"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
-  
 }
 
 export default App;
