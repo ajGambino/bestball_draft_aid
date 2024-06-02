@@ -54,6 +54,9 @@ th, td {
 th {
   background-color: #f2f2f2;
   cursor: pointer; /* Show pointer cursor for sortable headers */
+  position: sticky;
+  top: 0; /* Stick to the top */
+  z-index: 1; /* Ensure headers are above the table content */
 }
 
 /* Ensure the table fits within the viewport on mobile devices */
