@@ -239,3 +239,9 @@ th .arrow {
 .alternate-rows tbody tr:nth-child(even) {
   background-color: #fff; /* White for even rows */
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}
+

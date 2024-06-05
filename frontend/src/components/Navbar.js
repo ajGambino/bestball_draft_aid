@@ -13,6 +13,11 @@ const Navbar = () => {
         <li onClick={() => scrollToSection('players')}>Players</li>
         <li onClick={() => scrollToSection('matchups')}>Matchups</li>
         <li onClick={() => scrollToSection('picks')}>Picks</li>
+        <li>
+          <a href="https://bestball-draft-aid.onrender.com/" target="_blank" rel="noopener noreferrer">
+            Reload API
+          </a>
+        </li>
       </ul>
     </nav>
   );
