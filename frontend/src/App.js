@@ -122,14 +122,15 @@ function App() {
         onChange={handleSearch}
       />
       <button onClick={clearFilters}>Clear Filters</button>
-      <input
-  type="checkbox"
-  id="excludeZeroExposure"
-  checked={excludeZeroExposure}
-  onChange={() => setExcludeZeroExposure(!excludeZeroExposure)}
-/>
-<label htmlFor="excludeZeroExposure">Exclude 0% players</label>
-
+      <div className="checkbox-container">
+        <input
+          type="checkbox"
+          id="excludeZeroExposure"
+          checked={excludeZeroExposure}
+          onChange={() => setExcludeZeroExposure(!excludeZeroExposure)}
+        />
+        <label htmlFor="excludeZeroExposure">Exclude 0% players</label>
+      </div>
       {/* Min and Max ADP inputs */}
       <div className="adp-filter-container">
         <input
