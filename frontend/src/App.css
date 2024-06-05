@@ -1,3 +1,11 @@
+/* Reset CSS */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* General styling for the app */
 .App {
   text-align: center;
@@ -129,6 +137,9 @@ th .arrow {
   table {
     font-size: 0.7rem; /* Adjust font size for better readability on smaller screens */
   }
+  .table-container {
+    width: 100%;
+  }
 
   th, td {
     padding: 4px; /* Adjust padding for smaller screens */
@@ -164,4 +175,45 @@ th .arrow {
 h1, h2 {
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* components/Navbar.css */
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0; /* Ensure it starts from the left */
+  width: 100%;
+  z-index: 10;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul li {
+  float: left;
+}
+
+.navbar ul li {
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar ul li:hover {
+  background-color: #575757;
+}
+
+/* Ensure main content is not hidden behind the navbar */
+.main-content {
+  margin-top: 2.2rem; /* Adjust based on the navbar's height */
 }

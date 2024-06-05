@@ -1,3 +1,4 @@
+// App.js
 import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
@@ -5,8 +6,10 @@ import ADPFilter from './components/ADPFilter';
 import Filters from './components/Filters';
 import PlayerTable from './components/PlayerTable';
 import MatchupsTable from './components/MatchupsTable';
+import Picks from './components/Picks';
+import Navbar from './components/Navbar';
 
-function App() { 
+function App() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -114,38 +117,75 @@ function App() {
 
   return (
     <div className="App">
-      <div className="banner">
-      <h1>Draft Caddy</h1>
-      <SearchBar
-        searchTerm={searchTerm}
-        handleSearch={handleSearch}
-        clearFilters={clearFilters}
-        excludeZeroExposure={excludeZeroExposure}
-        setExcludeZeroExposure={setExcludeZeroExposure}
-      />
-      <ADPFilter
-        minADP={minADP}
-        maxADP={maxADP}
-        handleMinADPChange={handleMinADPChange}
-        handleMaxADPChange={handleMaxADPChange}
-      />
-      <Filters
-        data={data}
-        selectedTeams={selectedTeams}
-        setSelectedTeams={setSelectedTeams}
-        selectedPositions={selectedPositions}
-        setSelectedPositions={setSelectedPositions}
-        handleCheckboxChange={handleCheckboxChange}
-      />
+      <Navbar />
+      <div className="main-content" id="home">
+        <h1>Draft Caddy</h1>
+        <SearchBar
+          searchTerm={searchTerm}
+          handleSearch={handleSearch}
+          clearFilters={clearFilters}
+          excludeZeroExposure={excludeZeroExposure}
+          setExcludeZeroExposure={setExcludeZeroExposure}
+        />
+        <ADPFilter
+          minADP={minADP}
+          maxADP={maxADP}
+          handleMinADPChange={handleMinADPChange}
+          handleMaxADPChange={handleMaxADPChange}
+        />
+        <Filters
+          data={data}
+          selectedTeams={selectedTeams}
+          setSelectedTeams={setSelectedTeams}
+          selectedPositions={selectedPositions}
+          setSelectedPositions={setSelectedPositions}
+          handleCheckboxChange={handleCheckboxChange}
+        />
       </div>
-      <PlayerTable
-        filteredData={filteredData}
-        sortConfig={sortConfig}
-        handleSort={handleSort}
-        getRowClass={getRowClass}
-      />
-      <h2>Matchups</h2>
-      <MatchupsTable />
+      <div className="main-content" id="players">
+        <PlayerTable
+          filteredData={filteredData}
+          sortConfig={sortConfig}
+          handleSort={handleSort}
+          getRowClass={getRowClass}
+        />
+      </div>
+      <div className="main-content" id="matchups">
+        <h2>Matchups</h2>
+        <MatchupsTable />
+      </div>
+      <div className="main-content" id="picks">
+        <h2>Draft Order</h2>
+        <div className="table-container alternate-rows">
+          <table>
+            <thead>
+              <tr>
+                <th>1st pick</th>
+                <th>2nd</th>
+                <th>3rd</th>
+                <th>4th</th>
+                <th>5th</th>
+                <th>6th</th>
+                <th>7th</th>
+                <th>8th</th>
+                <th>9th</th>
+                <th>10th</th>
+                <th>11th</th>
+                <th>12th</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Picks.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {row.map((item, colIndex) => (
+                    <td key={colIndex}>{item}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
