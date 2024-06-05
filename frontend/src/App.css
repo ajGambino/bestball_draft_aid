@@ -38,7 +38,7 @@
   margin: 0 0.5rem;
   padding: 0.5rem;
   font-size: 1rem;
-  width: 80px; /* Adjust the width here */
+  width: 100px; /* Adjusted input width */
 }
 
 /* Container for the table */
@@ -47,6 +47,7 @@
   overflow-y: auto; /* Enable vertical scrolling */
   margin-top: 1rem;
   max-height: 70vh; /* Adjust based on your preference */
+  max-width: 100%; /* Ensure the table doesn't exceed the container width */
 }
 
 /* Make the table responsive */
@@ -73,18 +74,20 @@ th {
   z-index: 1; /* Ensure headers appear above other content */
 }
 
-th::after {
-  content: ' ';
+th .arrow {
   margin-left: 0.5rem;
-  border: 4px solid transparent;
 }
 
-.sorted-asc::after {
-  border-bottom-color: #000;
+.sorted-asc .arrow {
+  content: '▲';
 }
 
-.sorted-desc::after {
-  border-top-color: #000;
+.sorted-desc .arrow {
+  content: '▼';
+}
+
+th .arrow {
+  content: '↕';
 }
 
 /* Ensure the table fits within the viewport on mobile devices */
@@ -117,4 +120,13 @@ th::after {
 
 .row-te {
   background-color: #fff3e0; /* Light orange for TE */
+}
+
+/* Alternating row colors for the second table */
+.alternate-rows tbody tr:nth-child(odd) {
+  background-color: #f9f9f9; /* Light grey for odd rows */
+}
+
+.alternate-rows tbody tr:nth-child(even) {
+  background-color: #fff; /* White for even rows */
 }

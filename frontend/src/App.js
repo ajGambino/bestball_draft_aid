@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
+import matchupsData from './matchupsData';
 
 function App() {
   const [data, setData] = useState([]);
@@ -168,7 +169,7 @@ function App() {
           </div>
         </div>
       </div>
-      {/* Table */}
+      {/* First Table */}
       <div className="table-container">
         <table>
           <thead>
@@ -176,13 +177,23 @@ function App() {
               <th>Team</th>
               <th>Name</th>
               <th>Pos</th>
-              <th className={sortConfig.key === 'Rank' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Rank')}>Rank</th>
-              <th className={sortConfig.key === 'ADP' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP')}>ADP</th>
-              <th className={sortConfig.key === 'ADP Differential' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP Differential')}>+/-</th>
+              <th className={sortConfig.key === 'Rank' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Rank')}>
+                Rank
+                <span className="arrow">{sortConfig.key === 'Rank' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : '↕'}</span>
+              </th>
+              <th className={sortConfig.key === 'ADP' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP')}>
+                ADP
+                <span className="arrow">{sortConfig.key === 'ADP' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : '↕'}</span>
+              </th>
+              <th className={sortConfig.key === 'ADP Differential' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('ADP Differential')}>
+                +/-
+                <span className="arrow">{sortConfig.key === 'ADP Differential' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : '↕'}</span>
+              </th>
               <th>Wk 17</th>
-              <th>Wk 16</th>
-              <th>Wk 15</th>
-              <th className={sortConfig.key === 'Exposure' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Exposure')}>Exp.</th>
+              <th className={sortConfig.key === 'Exposure' ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : ''} onClick={() => handleSort('Exposure')}>
+                Exp.
+                <span className="arrow">{sortConfig.key === 'Exposure' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : '↕'}</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -195,9 +206,33 @@ function App() {
                 <td>{item.ADP}</td>
                 <td>{item['ADP Differential']}</td>
                 <td>{item['Week 17']}</td>
+                <td>{item.Exposure + "%"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* Second Table */}
+      <h2>Matchups</h2>
+      <div className="table-container alternate-rows">
+        <table>
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Week 17</th>
+              <th>Week 16</th>
+              <th>Week 15</th>
+              <th>Division</th>
+            </tr>
+          </thead>
+          <tbody>
+            {matchupsData.map((item, index) => (
+              <tr key={index}>
+                <td>{item.Team}</td>
+                <td>{item['Week 17']}</td>
                 <td>{item['Week 16']}</td>
                 <td>{item['Week 15']}</td>
-                <td>{item.Exposure + "%"}</td>
+                <td>{item.Division}</td>
               </tr>
             ))}
           </tbody>
