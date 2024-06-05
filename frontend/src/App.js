@@ -11,6 +11,8 @@ function App() {
   const [minADP, setMinADP] = useState('');
   const [maxADP, setMaxADP] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
+  const [excludeZeroExposure, setExcludeZeroExposure] = useState(false);
+
 
   useEffect(() => {
     fetch(process.env.REACT_APP_API_URL)
@@ -54,20 +56,23 @@ function App() {
     }
   };
 
-  const filterData = useCallback((searchTerm, teams, positions, minADP, maxADP) => {
+  const filterData = useCallback((searchTerm, teams, positions, minADP, maxADP, excludeZeroExposure) => {
     let filtered = data.filter(item =>
       (item.Name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '') &&
       (teams.length === 0 || teams.includes(item.Team)) &&
       (positions.length === 0 || positions.includes(item.Position)) &&
       (minADP === '' || item.ADP >= parseFloat(minADP)) &&
-      (maxADP === '' || item.ADP <= parseFloat(maxADP))
+      (maxADP === '' || item.ADP <= parseFloat(maxADP)) &&
+      (!excludeZeroExposure || item.Exposure !== 0)
     );
     setFilteredData(filtered);
   }, [data]);
+  
 
   useEffect(() => {
-    filterData(searchTerm, selectedTeams, selectedPositions, minADP, maxADP);
-  }, [searchTerm, selectedTeams, selectedPositions, minADP, maxADP, filterData]);
+    filterData(searchTerm, selectedTeams, selectedPositions, minADP, maxADP, excludeZeroExposure);
+  }, [searchTerm, selectedTeams, selectedPositions, minADP, maxADP, excludeZeroExposure, filterData]);
+  
 
   const handleSort = (key) => {
     let direction = 'ascending';
@@ -117,6 +122,14 @@ function App() {
         onChange={handleSearch}
       />
       <button onClick={clearFilters}>Clear Filters</button>
+      <input
+  type="checkbox"
+  id="excludeZeroExposure"
+  checked={excludeZeroExposure}
+  onChange={() => setExcludeZeroExposure(!excludeZeroExposure)}
+/>
+<label htmlFor="excludeZeroExposure">Exclude 0% players</label>
+
       {/* Min and Max ADP inputs */}
       <div className="adp-filter-container">
         <input
