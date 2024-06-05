@@ -16,7 +16,7 @@ const SearchBar = ({ searchTerm, handleSearch, clearFilters, excludeZeroExposure
         checked={excludeZeroExposure}
         onChange={() => setExcludeZeroExposure(!excludeZeroExposure)}
       />
-      <label htmlFor="excludeZeroExposure">Exclude 0% players</label>
+      <label htmlFor="excludeZeroExposure" className='exclude'>Exclude 0% players</label>
     </div>
   </div>
 );

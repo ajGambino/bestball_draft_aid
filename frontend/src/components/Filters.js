@@ -6,14 +6,14 @@ const Filters = ({ data, selectedTeams, setSelectedTeams, selectedPositions, set
       <label>Teams:</label>
       <div className="filter-items">
         {Array.from(new Set(data.map(item => item.Team))).sort().map((team, index) => (
-          <div key={index}>
+          <div key={index} className="team-checkbox-container">
             <input
               type="checkbox"
               value={team}
               checked={selectedTeams.includes(team)}
               onChange={(e) => handleCheckboxChange(e, setSelectedTeams, selectedTeams)}
             />
-            <span>{team}</span>
+            <span className="team-checkbox">{team}</span>
           </div>
         ))}
       </div>

@@ -18,7 +18,7 @@ function App() {
   const [excludeZeroExposure, setExcludeZeroExposure] = useState(false);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL)
+    fetch("https://bestball-draft-aid.onrender.com/api/draft-table")
       .then(response => response.json())
       .then(data => {
         setData(data);
@@ -114,6 +114,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="banner">
       <h1>Draft Caddy</h1>
       <SearchBar
         searchTerm={searchTerm}
@@ -136,6 +137,7 @@ function App() {
         setSelectedPositions={setSelectedPositions}
         handleCheckboxChange={handleCheckboxChange}
       />
+      </div>
       <PlayerTable
         filteredData={filteredData}
         sortConfig={sortConfig}
