@@ -36,8 +36,9 @@ function App() {
     setSearchTerm('');
     setMinADP('');
     setMaxADP('');
+    setExcludeZeroExposure(false); // Reset exclude zero exposure filter
     setStickyPlayers([]); // Clear sticky players
-    filterData('', [], [], '', '');
+    filterData('', [], [], '', '', false); // Update filterData call
   };
 
   const handleSearch = (e) => {

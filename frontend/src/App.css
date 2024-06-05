@@ -186,7 +186,10 @@ th .arrow {
 }
 
 /* Ensure the table fits within the viewport on mobile devices */
-@media (max-width: 768px) {
+@media (max-width: 768px) {  
+  .navbar ul li {
+    font-size: .7rem;
+  }
   .filter {
     width: 100%;
     font-size: 0.7rem;
@@ -211,6 +214,10 @@ th .arrow {
 
   .filter-items {
     font-size: 0.7rem;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin: 3rem 0rem 1rem 0rem;
   }
 }
 
