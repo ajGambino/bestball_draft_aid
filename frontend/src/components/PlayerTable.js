@@ -7,7 +7,7 @@ const PlayerTable = ({ filteredData, sortConfig, handleSort, getRowClass, toggle
         <thead>
           <tr>
             <th>Team</th>
-            <th>Compare</th>
+            <th>Add</th>
             <th>Name</th>
             <th>Pos</th>
             <th

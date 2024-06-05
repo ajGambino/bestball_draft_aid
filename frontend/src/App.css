@@ -133,7 +133,7 @@ input {
 
 /* Container for the table */
 .table-container {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   overflow-y: auto; /* Enable vertical scrolling */
   margin-top: 1rem;
@@ -155,6 +155,7 @@ th, td {
   border: 1px solid #ddd;
   word-wrap: break-word; /* Ensure long words break to fit the cell */
   overflow: hidden; /* Hide overflow text */
+  white-space: nowrap;
 }
 
 th {
@@ -185,6 +186,9 @@ th .arrow {
   content: '↕';
 }
 
+th.name-column, td.name-column {
+  width: 25%; /* Adjust as needed */
+}
 /* Ensure the table fits within the viewport on mobile devices */
 @media (max-width: 768px) {  
   .navbar ul li {
@@ -197,14 +201,13 @@ th .arrow {
   }
 
   table {
-    font-size: 0.3rem; /* Adjust font size for better readability on smaller screens */
-    width: 100%; /* Make table take full width */
-    table-layout: fixed; /* Make table columns equal width */
+    font-size: 0.7rem; /* Adjust font size for better readability on smaller screens */
+  
   }
 
   .table-container {
     width: 100%;
-    overflow-x: hidden;
+    
   }
 
   th, td {
