@@ -21,7 +21,7 @@ function App() {
   const [excludeZeroExposure, setExcludeZeroExposure] = useState(false);
 
   useEffect(() => {
-    fetch("https://bestball-draft-aid.onrender.com/api/draft-table")
+    fetch(process.env.REACT_APP_API_URL)
       .then(response => response.json())
       .then(data => {
         setData(data);
