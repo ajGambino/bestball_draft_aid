@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
@@ -8,6 +7,7 @@ import PlayerTable from './components/PlayerTable';
 import MatchupsTable from './components/MatchupsTable';
 import Picks from './components/Picks';
 import Navbar from './components/Navbar';
+import StickyPlayers from './components/StickyPlayers';
 
 function App() {
   const [data, setData] = useState([]);
@@ -19,9 +19,10 @@ function App() {
   const [maxADP, setMaxADP] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
   const [excludeZeroExposure, setExcludeZeroExposure] = useState(false);
+  const [stickyPlayers, setStickyPlayers] = useState([]);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL)
+    fetch("https://bestball-draft-aid.onrender.com/api/draft-table")
       .then(response => response.json())
       .then(data => {
         setData(data);
@@ -35,6 +36,7 @@ function App() {
     setSearchTerm('');
     setMinADP('');
     setMaxADP('');
+    setStickyPlayers([]); // Clear sticky players
     filterData('', [], [], '', '');
   };
 
@@ -115,10 +117,18 @@ function App() {
     }
   };
 
+  const toggleStickyPlayer = (player) => {
+    setStickyPlayers((prevStickyPlayers) =>
+      prevStickyPlayers.includes(player)
+        ? prevStickyPlayers.filter((p) => p !== player)
+        : [...prevStickyPlayers, player]
+    );
+  };
+
   return (
-    <div className="App">
+    <div className="App" id="home">
       <Navbar />
-      <div className="main-content" id="home">
+      <div className="main-content" >
         <h1>Draft Caddy</h1>
         <SearchBar
           searchTerm={searchTerm}
@@ -142,50 +152,57 @@ function App() {
           handleCheckboxChange={handleCheckboxChange}
         />
       </div>
-      <div className="main-content" id="players">
-        <PlayerTable
-          filteredData={filteredData}
-          sortConfig={sortConfig}
-          handleSort={handleSort}
-          getRowClass={getRowClass}
-        />
+      <div id="players">
+      <StickyPlayers
+        stickyPlayers={stickyPlayers}
+        getRowClass={getRowClass}
+        toggleStickyPlayer={toggleStickyPlayer}
+      />
+      
+      <PlayerTable
+        filteredData={filteredData}
+        sortConfig={sortConfig}
+        handleSort={handleSort}
+        getRowClass={getRowClass}
+        toggleStickyPlayer={toggleStickyPlayer}
+      />
       </div>
-      <div className="main-content" id="matchups">
-        <h2>Matchups</h2>
-        <MatchupsTable />
+      <div id="matchups">
+      <h2>Matchups</h2>
+      <MatchupsTable />
       </div>
-      <div className="main-content" id="picks">
-        <h2>Draft Order</h2>
-        <div className="table-container alternate-rows">
-          <table>
-            <thead>
-              <tr>
-                <th>1st pick</th>
-                <th>2nd</th>
-                <th>3rd</th>
-                <th>4th</th>
-                <th>5th</th>
-                <th>6th</th>
-                <th>7th</th>
-                <th>8th</th>
-                <th>9th</th>
-                <th>10th</th>
-                <th>11th</th>
-                <th>12th</th>
+      <div id="picks">
+      <h2>Draft Order</h2>
+      <div className="table-container alternate-rows">
+        <table>
+          <thead>
+            <tr>
+              <th>1st pick</th>
+              <th>2nd</th>
+              <th>3rd</th>
+              <th>4th</th>
+              <th>5th</th>
+              <th>6th</th>
+              <th>7th</th>
+              <th>8th</th>
+              <th>9th</th>
+              <th>10th</th>
+              <th>11th</th>
+              <th>12th</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Picks.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {row.map((item, colIndex) => (
+                  <td key={colIndex}>{item}</td>
+                ))}
               </tr>
-            </thead>
-            <tbody>
-              {Picks.map((row, rowIndex) => (
-                <tr key={rowIndex}>
-                  {row.map((item, colIndex) => (
-                    <td key={colIndex}>{item}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
+    </div>
     </div>
   );
 }

@@ -59,8 +59,11 @@ body, html {
 h1, h2 {
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  font-size: 4rem;
   margin: 0;
+}
+
+h1 {
+  font-size: 4rem;
 }
 
 /* Container for the filters */
@@ -160,6 +163,10 @@ th {
   position: sticky; /* Make headers sticky */
   top: 0; /* Position at the top of the viewport */
   z-index: 1; /* Ensure headers appear above other content */
+}
+
+.sticky-row {
+  background-color: yellow; /* Highlight sticky rows */
 }
 
 th .arrow {
