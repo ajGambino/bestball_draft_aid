@@ -197,11 +197,14 @@ th .arrow {
   }
 
   table {
-    font-size: 0.7rem; /* Adjust font size for better readability on smaller screens */
+    font-size: 0.3rem; /* Adjust font size for better readability on smaller screens */
+    width: 100%; /* Make table take full width */
+    table-layout: fixed; /* Make table columns equal width */
   }
 
   .table-container {
     width: 100%;
+    overflow-x: hidden;
   }
 
   th, td {
