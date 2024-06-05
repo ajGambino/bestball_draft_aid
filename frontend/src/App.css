@@ -3,6 +3,7 @@
   text-align: center;
   padding: 1rem;
   font-family: 'LXGW WenKai TC', sans-serif;
+  background: radial-gradient(circle, rgb(147, 141, 141), rgb(5, 69, 0), rgb(255, 255, 255));
 }
 
 /* Container for the filters */
@@ -13,7 +14,6 @@
   padding: 0.2rem;
   width: 100%;
   margin: 0 auto;
- 
 }
 
 /* Individual filter styling */
@@ -26,21 +26,20 @@
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   font-weight: bold;
-  
 }
 
 /* Styling for filter items */
 .filter-items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
- 
+  justify-content: center;
+  width: 80%;
 }
 
 .team-checkbox-container {
   display: inline-block;
   margin: 0.1rem;
-  padding: .1rem;
+  padding: 0.1rem;
 }
 
 .team-checkbox {
@@ -48,7 +47,6 @@
   width: 3ch; /* Set a fixed width, enough for 3 characters */
   text-align: center; /* Center the text */
 }
-
 
 /* Container for the ADP filters */
 .adp-filter-container {
@@ -61,11 +59,9 @@ input {
 }
 
 .adp-filter-container input {
-  margin: 0 0.5rem;
   padding: 0.5rem;
-  font-size: .5rem;
+  font-size: 0.5rem;
   width: 100px; /* Adjusted input width */
-  
 }
 
 .exclude {
@@ -123,6 +119,7 @@ th .arrow {
   content: '↕';
 }
 
+
 /* Ensure the table fits within the viewport on mobile devices */
 @media (max-width: 768px) {
   .filter {
@@ -164,13 +161,7 @@ th .arrow {
   background-color: #fff; /* White for even rows */
 }
 
-.App {
-  background: radial-gradient(circle, rgb(147, 141, 141), rgb(5, 69, 0), rgb(255, 255, 255));
-}
-
-
-
-h1, h2{
+h1, h2 {
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
