@@ -1,56 +1,56 @@
-from flask import Flask, jsonify
+import requests
 import pandas as pd
-from flask_cors import CORS
-import os
-from rapidfuzz import process
 import json
+from flask import Flask, jsonify
+from flask_cors import CORS
+from rapidfuzz import process
 
 app = Flask(__name__)
 CORS(app)
 
-# Import player images
-from nfl_img import draftables_dict
-
 # Define the path to the CSV file
-csv_file_path = os.path.join(os.path.dirname(__file__), 'csvs', 'draft_table.csv')
-matchups_csv_path = os.path.join(os.path.dirname(__file__), 'csvs', 'matchups.csv')
+csv_file_path = 'csvs/draft_table.csv'
 
-# Load CSV into DataFrame
+# Load the CSV into a DataFrame
 draft_table_df = pd.read_csv(csv_file_path)
-matchups_df = pd.read_csv(matchups_csv_path)
 
-# Convert draftables_dict to a DataFrame
-player_images_df = pd.DataFrame.from_dict(draftables_dict, orient='index')
+# Make the API call
+api_url = "https://api.draftkings.com/draftgroups/v1/draftgroups/105454/draftables"
+response = requests.get(api_url)
+data = response.json()
 
-# Normalize names in player_images_df for better matching
-player_images_df['normalized_name'] = player_images_df['displayName'].str.replace(r'\W+', '', regex=True).str.lower()
+# Extract relevant fields from the API response
+draftables_info = []
+for item in data.get("draftables", []):
+    draftable_info = {
+        "displayName": item.get("displayName"),
+        "playerImage160": item.get("playerImage160")
+    }
+    draftables_info.append(draftable_info)
 
-# Normalize names in draft_table_df for better matching
-draft_table_df['normalized_name'] = draft_table_df['Name'].str.replace(r'\W+', '', regex=True).str.lower()
+# Convert the list to a DataFrame
+draftables_df = pd.DataFrame(draftables_info)
 
-# Fuzzy matching function using rapidfuzz
-def fuzzy_merge(df1, df2, key1, key2, threshold=90):
-    matches = []
-    for name in df1[key1]:
-        match = process.extractOne(name, df2[key2], score_cutoff=threshold)
-        matches.append(match)
-    
-    df1['match'] = [match[0] if match else None for match in matches]
-    df1['score'] = [match[1] if match else None for match in matches]
-    
-    return df1
+# Normalize player names for fuzzy matching
+draft_table_df['normalized_name'] = draft_table_df['Name'].str.lower().str.replace(r'\W', '', regex=True)
+draftables_df['normalized_name'] = draftables_df['displayName'].str.lower().str.replace(r'\W', '', regex=True)
 
-# Perform fuzzy merge
-merged_df = fuzzy_merge(draft_table_df, player_images_df, 'normalized_name', 'normalized_name')
+# Fuzzy matching function
+def match_players(name, choices):
+    match, score = process.extractOne(name, choices)
+    return match, score
 
-# Merge with original player_images_df to get image URLs
-merged_df = merged_df.merge(player_images_df[['normalized_name', 'playerImage160']], left_on='match', right_on='normalized_name', how='left')
+# Apply fuzzy matching
+matches = draftables_df['normalized_name'].apply(lambda x: match_players(x, draft_table_df['normalized_name']))
+draftables_df['match'] = matches.apply(lambda x: x[0])
+draftables_df['score'] = matches.apply(lambda x: x[1])
 
-# Drop unnecessary columns
-merged_df = merged_df.drop(columns=['displayName', 'position_y', 'normalized_name_x', 'normalized_name_y', 'match', 'score'])
+# Merge DataFrames on the normalized names
+merged_df = draft_table_df.merge(draftables_df, left_on='normalized_name', right_on='match', how='left')
 
-# Replace NaN with None to make it JSON serializable
-merged_df = merged_df.where(pd.notnull(merged_df), None)
+# Drop unnecessary columns and duplicates
+merged_df = merged_df.drop(columns=['displayName', 'position_y', 'normalized_name_x', 'normalized_name_y', 'match', 'score'], errors='ignore')
+merged_df = merged_df.drop_duplicates(subset='Name')
 
 # Convert the DataFrame to JSON and handle any remaining NaN values
 def df_to_json(df):
@@ -60,17 +60,9 @@ def df_to_json(df):
 def home():
     return "Welcome to Draft Caddy!"
 
-# Route to serve draft table data
 @app.route('/api/draft-table')
 def get_draft_table():
-    # Convert DataFrame to JSON and return
     return jsonify(df_to_json(merged_df))
-
-# Route to serve matchups data
-@app.route('/api/matchups')
-def get_matchups():
-    # Convert DataFrame to JSON and return
-    return jsonify(df_to_json(matchups_df))
 
 if __name__ == '__main__':
     # Get the port from the environment, or use 5000 as a default
