@@ -2,7 +2,8 @@ from flask import Flask, jsonify
 import pandas as pd
 from flask_cors import CORS
 import os
-from fuzzywuzzy import process
+from rapidfuzz import process
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -22,19 +23,21 @@ matchups_df = pd.read_csv(matchups_csv_path)
 player_images_df = pd.DataFrame.from_dict(draftables_dict, orient='index')
 
 # Normalize names in player_images_df for better matching
-player_images_df['normalized_name'] = player_images_df['displayName'].str.replace(r'\W+', '').str.lower()
+player_images_df['normalized_name'] = player_images_df['displayName'].str.replace(r'\W+', '', regex=True).str.lower()
 
 # Normalize names in draft_table_df for better matching
-draft_table_df['normalized_name'] = draft_table_df['Name'].str.replace(r'\W+', '').str.lower()
+draft_table_df['normalized_name'] = draft_table_df['Name'].str.replace(r'\W+', '', regex=True).str.lower()
 
-# Fuzzy matching function
-def fuzzy_merge(df1, df2, key1, key2, threshold=90, limit=1):
-    s = df2[key2].tolist()
-
-    m = df1[key1].apply(lambda x: process.extractOne(x, s, score_cutoff=threshold) if pd.notnull(x) else None)
-    df1['match'] = [x[0] if x else None for x in m]
-    df1['score'] = [x[1] if x else None for x in m]
-
+# Fuzzy matching function using rapidfuzz
+def fuzzy_merge(df1, df2, key1, key2, threshold=90):
+    matches = []
+    for name in df1[key1]:
+        match = process.extractOne(name, df2[key2], score_cutoff=threshold)
+        matches.append(match)
+    
+    df1['match'] = [match[0] if match else None for match in matches]
+    df1['score'] = [match[1] if match else None for match in matches]
+    
     return df1
 
 # Perform fuzzy merge
