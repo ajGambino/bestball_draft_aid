@@ -39,7 +39,6 @@ const PlayerTable = ({ filteredData, sortConfig, handleSort, getRowClass, toggle
               Exp.
               <span className="arrow">{sortConfig.key === 'Exposure' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : '↕'}</span>
             </th>
-           
           </tr>
         </thead>
         <tbody>
@@ -49,18 +48,20 @@ const PlayerTable = ({ filteredData, sortConfig, handleSort, getRowClass, toggle
               <td>
                 <button onClick={() => toggleStickyPlayer(item)}>+</button>
               </td>
-              <td>{item.Name}</td>
+              <td>
+                {item.playerImage160 && <img src={item.playerImage160} alt={item.Name} style={{ width: '30px', marginRight: '10px' }} />}
+                {item.Name}
+              </td>
               <td>{item.Position}</td>
               <td>{item.Rank}</td>
               <td>{item.ADP}</td>
               <td>{item['ADP Differential']}</td>
               <td>{item['Week 17']}</td>
               <td>{item.Exposure + "%"}</td>
-            
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> 
     </div>
   );
 };

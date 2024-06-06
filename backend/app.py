@@ -5,17 +5,27 @@ import os
 
 app = Flask(__name__)
 CORS(app)
- 
+
+# Import player images
+from nfl_img import draftables_dict
+
 # Define the path to the CSV file
 csv_file_path = os.path.join(os.path.dirname(__file__), 'csvs', 'draft_table.csv')
 matchups_csv_path = os.path.join(os.path.dirname(__file__), 'csvs', 'matchups.csv')
 
-# Load csv into a DataFrame
+# Load CSV into DataFrame
 draft_table_df = pd.read_csv(csv_file_path)
 matchups_df = pd.read_csv(matchups_csv_path)
+
 # Fix NaN error for JSON
 draft_table_df = draft_table_df.where(pd.notnull(draft_table_df), None)
 matchups_df = matchups_df.where(pd.notnull(matchups_df), None)
+
+# Convert draftables_dict to a DataFrame for merging
+player_images_df = pd.DataFrame.from_dict(draftables_dict, orient='index')
+
+# Merge draft_table_df with player_images_df on the player name
+draft_table_df = draft_table_df.merge(player_images_df, left_on='Name', right_on='displayName', how='left')
 
 @app.route('/')
 def home():
@@ -32,7 +42,6 @@ def get_draft_table():
 def get_matchups():
     # Convert DataFrame to JSON and return
     return jsonify(matchups_df.to_dict(orient='records'))
-
 
 if __name__ == '__main__':
     # Get the port from the environment, or use 5000 as a default

@@ -22,7 +22,7 @@ function App() {
   const [stickyPlayers, setStickyPlayers] = useState([]);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL)
+    fetch("https://bestball-draft-aid.onrender.com/api/draft-table")
       .then(response => response.json())
       .then(data => {
         setData(data); 
