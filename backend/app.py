@@ -3,7 +3,7 @@ import json
 import pandas as pd
 from flask import Flask, jsonify
 from flask_cors import CORS
-from rapidfuzz import process
+from rapidfuzz import process, fuzz
 import os
 
 app = Flask(__name__)
@@ -30,29 +30,36 @@ draftables_df = pd.DataFrame.from_dict(draftables_dict, orient='index')
 draft_table_df['normalized_name'] = draft_table_df['Name'].str.lower().str.replace(r'[^a-z]', '', regex=True)
 draftables_df['normalized_name'] = draftables_df['displayName'].str.lower().str.replace(r'[^a-z]', '', regex=True)
 
-def match_players(name, choices):
-    result = process.extractOne(name, choices)
-    match, score, _ = result  # Extract the match, score, and ignore the index
-    return match, score
+# Function to get the best match for each player
+def get_best_match(name, choices):
+    result = process.extract(name, choices, scorer=fuzz.ratio)
+    if result:
+        match, score, idx = max(result, key=lambda x: x[1])
+        return match, score, idx
+    return None, 0, -1
 
-# Apply fuzzy matching
-matches = draftables_df['normalized_name'].apply(lambda x: match_players(x, draft_table_df['normalized_name']))
+# Create a mapping from draft table normalized names to their rows
+draft_table_name_to_row = draft_table_df.set_index('normalized_name').T.to_dict()
 
-# Extract matched names and scores
-draftables_df['match'] = matches.apply(lambda x: x[0])
-draftables_df['score'] = matches.apply(lambda x: x[1])
+# Store the best matches in a list
+best_matches = []
 
-# Merge DataFrames on the matched names
-merged_df = pd.merge(draft_table_df, draftables_df, left_on='normalized_name', right_on='match', suffixes=('_x', '_y'))
+for idx, row in draftables_df.iterrows():
+    name = row['normalized_name']
+    match, score, match_idx = get_best_match(name, draft_table_df['normalized_name'].tolist())
+    if score > 80:  # Arbitrary threshold for a good match, adjust as needed
+        matched_row = draft_table_name_to_row.get(match)
+        if matched_row:
+            best_matches.append({**matched_row, **row})
 
-# Print columns of the merged DataFrame for debugging
-print(merged_df.columns)
+# Create a new DataFrame from the best matches
+best_matches_df = pd.DataFrame(best_matches)
 
 # Drop unnecessary columns
-columns_to_drop = ['displayName', 'normalized_name_x', 'normalized_name_y', 'match', 'score']
-columns_to_drop = [col for col in columns_to_drop if col in merged_df.columns]
+columns_to_drop = ['displayName', 'normalized_name', 'match', 'score']
+columns_to_drop = [col for col in columns_to_drop if col in best_matches_df.columns]
 
-merged_df = merged_df.drop(columns=columns_to_drop)
+merged_df = best_matches_df.drop(columns=columns_to_drop)
 
 @app.route('/')
 def home():
