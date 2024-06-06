@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import pandas as pd
 from flask_cors import CORS
 import os
+from fuzzywuzzy import process
 
 app = Flask(__name__)
 CORS(app)
@@ -17,22 +18,40 @@ matchups_csv_path = os.path.join(os.path.dirname(__file__), 'csvs', 'matchups.cs
 draft_table_df = pd.read_csv(csv_file_path)
 matchups_df = pd.read_csv(matchups_csv_path)
 
-# Fix NaN error for JSON
-draft_table_df = draft_table_df.where(pd.notnull(draft_table_df), None)
-matchups_df = matchups_df.where(pd.notnull(matchups_df), None)
-
-# Convert draftables_dict to a DataFrame for merging
+# Convert draftables_dict to a DataFrame
 player_images_df = pd.DataFrame.from_dict(draftables_dict, orient='index')
 
-# Merge draft_table_df with player_images_df on the player name
-merged_df = draft_table_df.merge(player_images_df, left_on='Name', right_on='displayName', how='left')
+# Normalize names in player_images_df for better matching
+player_images_df['normalized_name'] = player_images_df['displayName'].str.replace(r'\W+', '').str.lower()
 
-# Drop the duplicate 'position' column and rename 'displayName' to 'Name'
-merged_df = merged_df.drop(columns=['displayName'])
-if 'position_y' in merged_df.columns:
-    merged_df = merged_df.drop(columns=['position_y'])
-if 'position' in merged_df.columns:
-    merged_df = merged_df.rename(columns={'position': 'Position'})
+# Normalize names in draft_table_df for better matching
+draft_table_df['normalized_name'] = draft_table_df['Name'].str.replace(r'\W+', '').str.lower()
+
+# Fuzzy matching function
+def fuzzy_merge(df1, df2, key1, key2, threshold=90, limit=1):
+    s = df2[key2].tolist()
+
+    m = df1[key1].apply(lambda x: process.extractOne(x, s, score_cutoff=threshold) if pd.notnull(x) else None)
+    df1['match'] = [x[0] if x else None for x in m]
+    df1['score'] = [x[1] if x else None for x in m]
+
+    return df1
+
+# Perform fuzzy merge
+merged_df = fuzzy_merge(draft_table_df, player_images_df, 'normalized_name', 'normalized_name')
+
+# Merge with original player_images_df to get image URLs
+merged_df = merged_df.merge(player_images_df[['normalized_name', 'playerImage160']], left_on='match', right_on='normalized_name', how='left')
+
+# Drop unnecessary columns
+merged_df = merged_df.drop(columns=['displayName', 'position_y', 'normalized_name_x', 'normalized_name_y', 'match', 'score'])
+
+# Replace NaN with None to make it JSON serializable
+merged_df = merged_df.where(pd.notnull(merged_df), None)
+
+# Convert the DataFrame to JSON and handle any remaining NaN values
+def df_to_json(df):
+    return json.loads(df.to_json(orient='records'))
 
 @app.route('/')
 def home():
@@ -42,13 +61,13 @@ def home():
 @app.route('/api/draft-table')
 def get_draft_table():
     # Convert DataFrame to JSON and return
-    return jsonify(merged_df.to_dict(orient='records'))
+    return jsonify(df_to_json(merged_df))
 
 # Route to serve matchups data
 @app.route('/api/matchups')
 def get_matchups():
     # Convert DataFrame to JSON and return
-    return jsonify(matchups_df.to_dict(orient='records'))
+    return jsonify(df_to_json(matchups_df))
 
 if __name__ == '__main__':
     # Get the port from the environment, or use 5000 as a default
