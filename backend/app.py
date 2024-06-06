@@ -45,6 +45,9 @@ draftables_df['score'] = matches.apply(lambda x: x[1])
 # Merge DataFrames on the matched names
 merged_df = pd.merge(draft_table_df, draftables_df, left_on='normalized_name', right_on='match', suffixes=('_x', '_y'))
 
+# Print columns of the merged DataFrame for debugging
+print(merged_df.columns)
+
 # Drop unnecessary columns
 merged_df = merged_df.drop(columns=['displayName', 'position_y', 'normalized_name_x', 'normalized_name_y', 'match', 'score'])
 
