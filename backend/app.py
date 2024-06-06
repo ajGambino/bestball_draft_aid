@@ -49,7 +49,10 @@ merged_df = pd.merge(draft_table_df, draftables_df, left_on='normalized_name', r
 print(merged_df.columns)
 
 # Drop unnecessary columns
-merged_df = merged_df.drop(columns=['displayName', 'position_y', 'normalized_name_x', 'normalized_name_y', 'match', 'score'])
+columns_to_drop = ['displayName', 'normalized_name_x', 'normalized_name_y', 'match', 'score']
+columns_to_drop = [col for col in columns_to_drop if col in merged_df.columns]
+
+merged_df = merged_df.drop(columns=columns_to_drop)
 
 @app.route('/')
 def home():
