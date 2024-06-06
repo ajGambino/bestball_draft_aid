@@ -28,7 +28,7 @@ player_images_df = pd.DataFrame.from_dict(draftables_dict, orient='index')
 merged_df = draft_table_df.merge(player_images_df, left_on='Name', right_on='displayName', how='left')
 
 # Drop the duplicate 'position' column and rename 'displayName' to 'Name'
-merged_df = merged_df.drop(columns=['displayName', 'position_y'])
+merged_df = merged_df.drop(columns=['displayName', 'position'])
 merged_df = merged_df.rename(columns={'position_x': 'Position'})
 
 @app.route('/')
