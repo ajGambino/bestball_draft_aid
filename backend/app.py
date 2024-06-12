@@ -52,6 +52,8 @@ for idx, row in draftables_df.iterrows():
         if matched_row:
             best_matches.append({**matched_row, **row})
 
+
+
 # Create a new DataFrame from the best matches
 best_matches_df = pd.DataFrame(best_matches)
 
