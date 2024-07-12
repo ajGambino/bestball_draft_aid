@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 # Define the directory containing CSV files
-csvs_dir = "C:\\Users\\kenco\\OneDrive\\Documents\\GitHub\\bestball_draft_aid\\backend\\csvs"
+csvs_dir = "C:\\Users\\kenco\\GitHub\\bestball_draft_aid\\backend\\csvs"
 
 # Function to extract player data from teams.csv
 def extract_player_data(input_file, output_file):
