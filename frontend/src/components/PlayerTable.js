@@ -50,7 +50,7 @@ const PlayerTable = ({ filteredData, sortConfig, handleSort, getRowClass, toggle
               </td>
               <td>
                 {item.Name}
-                {item.playerImage160 && <img src={item.playerImage160} alt={item.Name} style={{ width: '20px', height: '20px', marginLeft: '10px' }} />}
+                {/* {item.playerImage160 && <img src={item.playerImage160} alt={item.Name} style={{ width: '20px', height: '20px', marginLeft: '10px' }} />} */}
               </td>
               <td>{item.Position}</td>
               <td>{item.Rank}</td>
