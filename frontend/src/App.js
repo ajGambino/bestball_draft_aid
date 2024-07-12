@@ -25,6 +25,7 @@ function App() {
     fetch(process.env.REACT_APP_API_URL)
       .then(response => response.json())
       .then(data => {
+        console.log("Fetched data:", data);
         setData(data); 
         setFilteredData(data);
       });
@@ -74,8 +75,16 @@ function App() {
       (maxADP === '' || item.ADP <= parseFloat(maxADP)) &&
       (!excludeZeroExposure || item.Exposure !== 0)
     );
-    setFilteredData(filtered);
-  }, [data]);
+
+   // Check for duplicates
+  const uniqueFiltered = filtered.filter((item, index, self) =>
+    index === self.findIndex((t) => (
+      t.Name === item.Name && t.Rank === item.Rank
+    ))
+  );
+  console.log("Filtered data:", uniqueFiltered); // Add this line for debugging
+  setFilteredData(uniqueFiltered);
+}, [data]);
 
   useEffect(() => {
     filterData(searchTerm, selectedTeams, selectedPositions, minADP, maxADP, excludeZeroExposure);
@@ -89,7 +98,7 @@ function App() {
     setSortConfig({ key, direction });
     sortData(key, direction);
   };
-
+  
   const sortData = (key, direction) => {
     let sorted = [...filteredData].sort((a, b) => {
       if (a[key] < b[key]) {
@@ -100,9 +109,18 @@ function App() {
       }
       return 0;
     });
-    setFilteredData(sorted);
+  
+    // Ensure sorted data is unique
+    const uniqueSorted = sorted.filter((item, index, self) =>
+      index === self.findIndex((t) => (
+        t.Name === item.Name && t.Rank === item.Rank
+      ))
+    );
+  
+    console.log("Sorted data:", uniqueSorted); // Add this line for debugging
+    setFilteredData(uniqueSorted);
   };
-
+  
   const getRowClass = (position) => {
     switch (position) {
       case 'RB':
