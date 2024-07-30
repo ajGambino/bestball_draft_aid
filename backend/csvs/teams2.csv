@@ -8,10 +8,18 @@ My Team 6,G. Wilson,WR,NYJ
 My Team 7,A. St. Brown,WR,DET
 My Team 8,B. Robinson,RB,ATL
 My Team 9,J. Chase,WR,CIN
-My Team 10,T. Hill,WR,MIA
-My Team 11,P. Nacua,WR,LAR
-My Team 12,J. Chase,WR,CIN
-My Team 13,C. McCaffrey,RB,SF
+My Team 10,J. Chase,WR,CIN
+My Team 11,J. Jefferson,WR,MIN
+My Team 12,T. Hill,WR,MIA
+My Team 13,P. Nacua,WR,LAR
+My Team 14,J. Chase,WR,CIN
+My Team 15,C. McCaffrey,RB,SF
+My Team 16,T. Hill,WR,MIA
+My Team 17,B. Robinson,RB,ATL
+My Team 18,P. Nacua,WR,LAR
+My Team 19,D. London,WR,ATL
+My Team 20,T. Hill,WR,MIA
+My Team 21,P. Nacua,WR,LAR
 My Team 1,B. Aiyuk,WR,SF
 My Team 2,D. Adams,WR,LV
 My Team 3,S. Barkley,RB,PHI
@@ -21,10 +29,18 @@ My Team 6,A. Brown,WR,PHI
 My Team 7,D. London,WR,ATL
 My Team 8,C. Olave,WR,NO
 My Team 9,N. Collins,WR,HOU
-My Team 10,K. Williams,RB,LAR
-My Team 11,S. Barkley,RB,PHI
-My Team 12,D. Adams,WR,LV
-My Team 13,S. LaPorta,TE,DET
+My Team 10,D. Adams,WR,LV
+My Team 11,C. Olave,WR,NO
+My Team 12,K. Williams,RB,LAR
+My Team 13,S. Barkley,RB,PHI
+My Team 14,D. Adams,WR,LV
+My Team 15,S. LaPorta,TE,DET
+My Team 16,D. Smith,WR,PHI
+My Team 17,N. Collins,WR,HOU
+My Team 18,S. Barkley,RB,PHI
+My Team 19,J. Gibbs,RB,DET
+My Team 20,C. Olave,WR,NO
+My Team 21,J. Gibbs,RB,DET
 My Team 1,D. Samuel Sr.,WR,SF
 My Team 2,N. Collins,WR,HOU
 My Team 3,D. Samuel Sr.,WR,SF
@@ -34,10 +50,18 @@ My Team 6,D. Smith,WR,PHI
 My Team 7,D. Samuel Sr.,WR,SF
 My Team 8,Z. Flowers,WR,BAL
 My Team 9,S. Diggs,WR,HOU
-My Team 10,J. Waddle,WR,MIA
-My Team 11,M. Pittman Jr.,WR,IND
-My Team 12,C. Kupp,WR,LAR
-My Team 13,D. Samuel Sr.,WR,SF
+My Team 10,C. Kupp,WR,LAR
+My Team 11,M. Nabers,WR,NYG
+My Team 12,J. Waddle,WR,MIA
+My Team 13,M. Pittman Jr.,WR,IND
+My Team 14,C. Kupp,WR,LAR
+My Team 15,D. Samuel Sr.,WR,SF
+My Team 16,J. Waddle,WR,MIA
+My Team 17,M. Nabers,WR,NYG
+My Team 18,D. Moore,WR,CHI
+My Team 19,D. Smith,WR,PHI
+My Team 20,B. Aiyuk,WR,SF
+My Team 21,D. Metcalf,WR,SEA
 My Team 1,T. Dell,WR,HOU
 My Team 2,Z. Flowers,WR,BAL
 My Team 3,D. Smith,WR,PHI
@@ -47,10 +71,18 @@ My Team 6,M. Nabers,WR,NYG
 My Team 7,J. Waddle,WR,MIA
 My Team 8,L. Jackson,QB,BAL
 My Team 9,T. Higgins,WR,CIN
-My Team 10,A. Cooper,WR,CLE
-My Team 11,D. Metcalf,WR,SEA
-My Team 12,M. Pittman Jr.,WR,IND
-My Team 13,Z. Flowers,WR,BAL
+My Team 10,M. Pittman Jr.,WR,IND
+My Team 11,T. Higgins,WR,CIN
+My Team 12,A. Cooper,WR,CLE
+My Team 13,D. Metcalf,WR,SEA
+My Team 14,M. Pittman Jr.,WR,IND
+My Team 15,Z. Flowers,WR,BAL
+My Team 16,C. Kirk,WR,JAX
+My Team 17,Z. Flowers,WR,BAL
+My Team 18,M. Pittman Jr.,WR,IND
+My Team 19,D. Moore,WR,CHI
+My Team 20,C. Kirk,WR,JAX
+My Team 21,M. Pittman Jr.,WR,IND
 My Team 1,C. Stroud,QB,HOU
 My Team 2,C. Stroud,QB,HOU
 My Team 3,T. Dell,WR,HOU
@@ -60,10 +92,18 @@ My Team 6,K. Allen,WR,CHI
 My Team 7,T. Dell,WR,HOU
 My Team 8,G. Pickens,WR,PIT
 My Team 9,M. Andrews,TE,BAL
-My Team 10,K. Allen,WR,CHI
-My Team 11,M. Brown,WR,KC
-My Team 12,R. White,RB,TB
-My Team 13,T. Dell,WR,HOU
+My Team 10,R. White,RB,TB
+My Team 11,T. McBride,TE,ARI
+My Team 12,K. Allen,WR,CHI
+My Team 13,M. Brown,WR,KC
+My Team 14,R. White,RB,TB
+My Team 15,T. Dell,WR,HOU
+My Team 16,R. White,RB,TB
+My Team 17,R. White,RB,TB
+My Team 18,C. Godwin,WR,TB
+My Team 19,C. Godwin,WR,TB
+My Team 20,K. Allen,WR,CHI
+My Team 21,R. White,RB,TB
 My Team 1,K. Pitts,TE,ATL
 My Team 2,C. Kirk,WR,JAX
 My Team 3,J. Mixon,RB,HOU
@@ -73,10 +113,18 @@ My Team 6,K. Coleman,WR,BUF
 My Team 7,K. Pitts,TE,ATL
 My Team 8,J. Reed,WR,GB
 My Team 9,J. Burrow,QB,CIN
-My Team 10,L. McConkey,WR,LAC
-My Team 11,D. Swift,RB,CHI
-My Team 12,K. Walker III,RB,SEA
-My Team 13,D. Montgomery,RB,DET
+My Team 10,K. Walker III,RB,SEA
+My Team 11,K. Walker III,RB,SEA
+My Team 12,L. McConkey,WR,LAC
+My Team 13,D. Swift,RB,CHI
+My Team 14,K. Walker III,RB,SEA
+My Team 15,D. Montgomery,RB,DET
+My Team 16,K. Walker III,RB,SEA
+My Team 17,H. Brown,WR,KC
+My Team 18,R. Odunze,WR,CHI
+My Team 19,K. Pitts,TE,ATL
+My Team 20,E. Engram,TE,JAX
+My Team 21,A. Richardson,QB,IND
 My Team 1,Z. White,RB,LV
 My Team 2,B. Thomas Jr.,WR,JAX
 My Team 3,E. Engram,TE,JAX
@@ -86,10 +134,18 @@ My Team 6,J. Ferguson,TE,DAL
 My Team 7,G. Kittle,TE,SF
 My Team 8,D. Hopkins,WR,TEN
 My Team 9,Z. White,RB,LV
-My Team 10,D. Montgomery,RB,DET
-My Team 11,J. Conner,RB,ARI
-My Team 12,J. Burrow,QB,CIN
-My Team 13,J. Williams,WR,DET
+My Team 10,J. Burrow,QB,CIN
+My Team 11,R. Odunze,WR,CHI
+My Team 12,D. Montgomery,RB,DET
+My Team 13,J. Conner,RB,ARI
+My Team 14,J. Burrow,QB,CIN
+My Team 15,J. Williams,WR,DET
+My Team 16,E. Engram,TE,JAX
+My Team 17,R. Odunze,WR,CHI
+My Team 18,B. Thomas Jr.,WR,JAX
+My Team 19,E. Engram,TE,JAX
+My Team 20,D. Montgomery,RB,DET
+My Team 21,J. Ferguson,TE,DAL
 My Team 1,D. Johnson,WR,CAR
 My Team 2,D. Hopkins,WR,TEN
 My Team 3,R. Rice,WR,KC
@@ -100,9 +156,17 @@ My Team 7,B. Purdy,QB,SF
 My Team 8,R. Rice,WR,KC
 My Team 9,D. Hopkins,WR,TEN
 My Team 10,D. Njoku,TE,CLE
-My Team 11,D. Hopkins,WR,TEN
+My Team 11,J. Warren,RB,PIT
 My Team 12,D. Njoku,TE,CLE
-My Team 13,B. Purdy,QB,SF
+My Team 13,D. Hopkins,WR,TEN
+My Team 14,D. Njoku,TE,CLE
+My Team 15,B. Purdy,QB,SF
+My Team 16,D. Johnson,WR,CAR
+My Team 17,J. Warren,RB,PIT
+My Team 18,J. Smith-Njigba,WR,SEA
+My Team 19,B. Thomas Jr.,WR,JAX
+My Team 20,N. Harris,RB,PIT
+My Team 21,J. Williams,WR,DET
 My Team 1,B. Purdy,QB,SF
 My Team 2,J. Williams,RB,DEN
 My Team 3,A. Ekeler,RB,WAS
@@ -112,10 +176,18 @@ My Team 6,M. Williams,WR,NYJ
 My Team 7,J. Brooks,RB,CAR
 My Team 8,J. Smith-Njigba,WR,SEA
 My Team 9,A. Ekeler,RB,WAS
-My Team 10,N. Harris,RB,PIT
-My Team 11,M. Williams,WR,NYJ
-My Team 12,D. Johnson,WR,CAR
-My Team 13,J. Goff,QB,DET
+My Team 10,D. Johnson,WR,CAR
+My Team 11,R. Rice,WR,KC
+My Team 12,N. Harris,RB,PIT
+My Team 13,M. Williams,WR,NYJ
+My Team 14,D. Johnson,WR,CAR
+My Team 15,J. Goff,QB,DET
+My Team 16,T. Tagovailoa,QB,MIA
+My Team 17,Z. Moss,RB,CIN
+My Team 18,C. Williams,QB,CHI
+My Team 19,D. Singletary,RB,NYG
+My Team 20,B. Purdy,QB,SF
+My Team 21,D. Goedert,TE,PHI
 My Team 1,A. Mitchell,WR,IND
 My Team 2,T. Lawrence,QB,JAX
 My Team 3,C. Samuel,WR,BUF
@@ -125,10 +197,18 @@ My Team 6,D. Singletary,RB,NYG
 My Team 7,B. Robinson Jr.,RB,WAS
 My Team 8,T. Lockett,WR,SEA
 My Team 9,C. Sutton,WR,DEN
-My Team 10,T. Tagovailoa,QB,MIA
+My Team 10,D. Schultz,TE,HOU
 My Team 11,T. Lockett,WR,SEA
-My Team 12,D. Schultz,TE,HOU
-My Team 13,K. Shakir,WR,BUF
+My Team 12,T. Tagovailoa,QB,MIA
+My Team 13,T. Lockett,WR,SEA
+My Team 14,D. Schultz,TE,HOU
+My Team 15,K. Shakir,WR,BUF
+My Team 16,T. Lawrence,QB,JAX
+My Team 17,D. Goedert,TE,PHI
+My Team 18,D. Goedert,TE,PHI
+My Team 19,T. Lawrence,QB,JAX
+My Team 20,T. Lawrence,QB,JAX
+My Team 21,J. Goff,QB,DET
 My Team 1,R. Dowdle,RB,DAL
 My Team 2,D. Schultz,TE,HOU
 My Team 3,C. Kmet,TE,CHI
@@ -138,10 +218,18 @@ My Team 6,J. Ford,RB,CLE
 My Team 7,K. Cousins,QB,ATL
 My Team 8,T. Hockenson,TE,MIN
 My Team 9,T. Spears,RB,TEN
-My Team 10,C. Brown,RB,CIN
-My Team 11,C. Brown,RB,CIN
-My Team 12,K. Shakir,WR,BUF
-My Team 13,B. Corum,RB,LAR
+My Team 10,K. Shakir,WR,BUF
+My Team 11,J. Palmer,WR,LAC
+My Team 12,C. Brown,RB,CIN
+My Team 13,C. Brown,RB,CIN
+My Team 14,K. Shakir,WR,BUF
+My Team 15,B. Corum,RB,LAR
+My Team 16,J. Jeudy,WR,CLE
+My Team 17,T. Benson,RB,ARI
+My Team 18,T. Chandler,RB,MIN
+My Team 19,K. Cousins,QB,ATL
+My Team 20,T. Lockett,WR,SEA
+My Team 21,B. Corum,RB,LAR
 My Team 1,B. Cooks,WR,DAL
 My Team 2,R. Dowdle,RB,DAL
 My Team 3,M. Stafford,QB,LAR
@@ -151,10 +239,18 @@ My Team 6,R. Dowdle,RB,DAL
 My Team 7,B. Corum,RB,LAR
 My Team 8,E. Elliott,RB,DAL
 My Team 9,R. Dowdle,RB,DAL
-My Team 10,J. Meyers,WR,LV
-My Team 11,A. Rodgers,QB,NYJ
-My Team 12,R. Dowdle,RB,DAL
-My Team 13,D. Wicks,WR,GB
+My Team 10,R. Dowdle,RB,DAL
+My Team 11,E. Elliott,RB,DAL
+My Team 12,J. Meyers,WR,LV
+My Team 13,A. Rodgers,QB,NYJ
+My Team 14,R. Dowdle,RB,DAL
+My Team 15,D. Wicks,WR,GB
+My Team 16,A. Thielen,WR,CAR
+My Team 17,J. Jeudy,WR,CLE
+My Team 18,M. Stafford,QB,LAR
+My Team 19,M. Williams,WR,NYJ
+My Team 20,J. Downs,WR,IND
+My Team 21,A. Mitchell,WR,IND
 My Team 1,R. Pearsall,WR,SF
 My Team 2,J. Downs,WR,IND
 My Team 3,Q. Johnston,WR,LAC
@@ -164,10 +260,18 @@ My Team 6,J. Downs,WR,IND
 My Team 7,M. Lloyd,RB,GB
 My Team 8,G. Smith,QB,SEA
 My Team 9,D. Mooney,WR,ATL
-My Team 10,D. Watson,QB,CLE
+My Team 10,X. Legette,WR,CAR
 My Team 11,G. Smith,QB,SEA
-My Team 12,X. Legette,WR,CAR
-My Team 13,J. Dotson,WR,WAS
+My Team 12,D. Watson,QB,CLE
+My Team 13,G. Smith,QB,SEA
+My Team 14,X. Legette,WR,CAR
+My Team 15,J. Dotson,WR,WAS
+My Team 16,C. Kmet,TE,CHI
+My Team 17,J. Downs,WR,IND
+My Team 18,M. Wilson,WR,ARI
+My Team 19,D. Mooney,WR,ATL
+My Team 20,R. Dowdle,RB,DAL
+My Team 21,W. Robinson,WR,NYG
 My Team 1,T. Chandler,RB,MIN
 My Team 2,T. Hill,TE,NO
 My Team 3,T. Franklin,WR,DEN
@@ -177,10 +281,18 @@ My Team 6,G. Smith,QB,SEA
 My Team 7,R. Davis,RB,BUF
 My Team 8,T. Chandler,RB,MIN
 My Team 9,J. Burton,WR,CIN
-My Team 10,R. Pearsall,WR,SF
-My Team 11,T. Hill,TE,NO
-My Team 12,J. Burton,WR,CIN
-My Team 13,T. Chandler,RB,MIN
+My Team 10,J. Burton,WR,CIN
+My Team 11,J. McCarthy,QB,MIN
+My Team 12,R. Pearsall,WR,SF
+My Team 13,T. Hill,TE,NO
+My Team 14,J. Burton,WR,CIN
+My Team 15,T. Chandler,RB,MIN
+My Team 16,M. Corley,WR,NYJ
+My Team 17,C. Otton,TE,TB
+My Team 18,J. McLaughlin,RB,DEN
+My Team 19,K. Vidal,RB,LAC
+My Team 20,D. Carr,QB,NO
+My Team 21,A. Gibson,RB,NE
 My Team 1,K. Mitchell,RB,BAL
 My Team 2,K. Vidal,RB,LAC
 My Team 3,J. Burton,WR,CIN
@@ -190,10 +302,18 @@ My Team 6,K. Vidal,RB,LAC
 My Team 7,T. Tracy Jr.,RB,NYG
 My Team 8,W. Robinson,WR,NYG
 My Team 9,T. Franklin,WR,DEN
-My Team 10,T. Franklin,WR,DEN
-My Team 11,Ro. Wilson,WR,PIT
-My Team 12,M. Wilson,WR,ARI
-My Team 13,T. Hill,TE,NO
+My Team 10,M. Wilson,WR,ARI
+My Team 11,D. Carr,QB,NO
+My Team 12,T. Franklin,WR,DEN
+My Team 13,Ro. Wilson,WR,PIT
+My Team 14,M. Wilson,WR,ARI
+My Team 15,T. Hill,TE,NO
+My Team 16,R. Pearsall,WR,SF
+My Team 17,D. Douglas,WR,NE
+My Team 18,E. Mitchell,RB,SF
+My Team 19,B. Irving,RB,TB
+My Team 20,A. Gibson,RB,NE
+My Team 21,R. Pearsall,WR,SF
 My Team 1,T. Tracy Jr.,RB,NYG
 My Team 2,R. Johnson,RB,CHI
 My Team 3,M. Mims Jr.,WR,DEN
@@ -203,10 +323,18 @@ My Team 6,C. Otton,TE,TB
 My Team 7,M. Wilson,WR,ARI
 My Team 8,D. Pierce,RB,HOU
 My Team 9,B. Irving,RB,TB
-My Team 10,D. Pierce,RB,HOU
-My Team 11,R. Pearsall,WR,SF
-My Team 12,B. Young,QB,CAR
-My Team 13,D. Douglas,WR,NE
+My Team 10,B. Young,QB,CAR
+My Team 11,K. Herbert,RB,CHI
+My Team 12,D. Pierce,RB,HOU
+My Team 13,R. Pearsall,WR,SF
+My Team 14,B. Young,QB,CAR
+My Team 15,D. Douglas,WR,NE
+My Team 16,B. Young,QB,CAR
+My Team 17,A. Gibson,RB,NE
+My Team 18,N. Fant,TE,SEA
+My Team 19,R. Davis,RB,BUF
+My Team 20,C. Okonkwo,TE,TEN
+My Team 21,E. Mitchell,RB,SF
 My Team 1,C. Okonkwo,TE,TEN
 My Team 2,E. Mitchell,RB,SF
 My Team 3,B. Nix,QB,DEN
@@ -217,9 +345,17 @@ My Team 7,T. Franklin,WR,DEN
 My Team 8,R. Johnson,RB,CHI
 My Team 9,B. Nix,QB,DEN
 My Team 10,K. Mitchell,RB,BAL
-My Team 11,J. Sanders,TE,CAR
+My Team 11,N. Fant,TE,SEA
 My Team 12,K. Mitchell,RB,BAL
-My Team 13,R. Johnson,RB,CHI
+My Team 13,J. Sanders,TE,CAR
+My Team 14,K. Mitchell,RB,BAL
+My Team 15,R. Johnson,RB,CHI
+My Team 16,K. Herbert,RB,CHI
+My Team 17,D. Jones,QB,NYG
+My Team 18,D. Pierce,RB,HOU
+My Team 19,C. Okonkwo,TE,TEN
+My Team 20,M. Corley,WR,NYJ
+My Team 21,B. Allen,RB,NYJ
 My Team 1,D. Walker,WR,BAL
 My Team 2,A. Estime,RB,DEN
 My Team 3,E. Mitchell,RB,SF
@@ -229,10 +365,18 @@ My Team 6,D. Pierce,RB,HOU
 My Team 7,K. Mitchell,RB,BAL
 My Team 8,J. Sanders,TE,CAR
 My Team 9,T. Bigsby,RB,JAX
-My Team 10,D. Walker,WR,BAL
-My Team 11,Ru. Wilson,QB,PIT
-My Team 12,T. Bigsby,RB,JAX
-My Team 13,A. Lazard,WR,NYJ
+My Team 10,T. Bigsby,RB,JAX
+My Team 11,J. McLaughlin,RB,DEN
+My Team 12,D. Walker,WR,BAL
+My Team 13,Ru. Wilson,QB,PIT
+My Team 14,T. Bigsby,RB,JAX
+My Team 15,A. Lazard,WR,NYJ
+My Team 16,C. Edwards-Helaire,RB,KC
+My Team 17,M. Mims Jr.,WR,DEN
+My Team 18,M. Mims Jr.,WR,DEN
+My Team 19,D. Foreman,RB,CLE
+My Team 20,D. Laube,RB,LV
+My Team 21,Z. Jones,WR,ARI
 My Team 1,D. Foreman,RB,CLE
 My Team 2,L. Rees-Zammit,RB,KC
 My Team 3,R. Rivers,RB,LAR
@@ -242,10 +386,18 @@ My Team 6,E. Hull,RB,IND
 My Team 7,J. McMillan,WR,TB
 My Team 8,T. Bigsby,RB,JAX
 My Team 9,D. Walker,WR,BAL
-My Team 10,E. Moore,WR,CLE
-My Team 11,J. Wiley,TE,KC
-My Team 12,S. Perine,RB,DEN
-My Team 13,R. Moore,WR,ATL
+My Team 10,S. Perine,RB,DEN
+My Team 11,D. Laube,RB,LV
+My Team 12,E. Moore,WR,CLE
+My Team 13,J. Wiley,TE,KC
+My Team 14,S. Perine,RB,DEN
+My Team 15,R. Moore,WR,ATL
+My Team 16,D. Foreman,RB,CLE
+My Team 17,Ru. Wilson,QB,PIT
+My Team 18,E. Gray,RB,NYG
+My Team 19,G. Dortch,WR,ARI
+My Team 20,K. Gainwell,RB,PHI
+My Team 21,R. McCloud III,WR,ATL
 My Team 1,R. Rivers,RB,LAR
 My Team 2,Z. Evans,RB,LAR
 My Team 3,R. Gilliam,RB,BUF
@@ -255,7 +407,15 @@ My Team 6,K. Pickett,QB,PHI
 My Team 7,A. Abdullah,RB,LV
 My Team 8,D. Foreman,RB,CLE
 My Team 9,D. Knox,TE,BUF
-My Team 10,B. Jordan,TE,HOU
-My Team 11,D. Washington,TE,PIT
-My Team 12,C. Evans,RB,CIN
-My Team 13,D. Vaughn,RB,DAL
+My Team 10,C. Evans,RB,CIN
+My Team 11,A. Dillon,RB,GB
+My Team 12,B. Jordan,TE,HOU
+My Team 13,D. Washington,TE,PIT
+My Team 14,C. Evans,RB,CIN
+My Team 15,D. Vaughn,RB,DAL
+My Team 16,K. Gainwell,RB,PHI
+My Team 17,K. Pickett,QB,PHI
+My Team 18,C. Edmonds,RB,TB
+My Team 19,S. Perine,RB,DEN
+My Team 20,S. Perine,RB,DEN
+My Team 21,O. Beckham Jr.,WR,MIA
