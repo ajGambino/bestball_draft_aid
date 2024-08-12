@@ -41,6 +41,7 @@ def get_best_match(name, choices):
 # Create a mapping from draft table normalized names to their rows
 draft_table_name_to_row = draft_table_df.set_index('normalized_name').T.to_dict()
 
+
 # Store the best matches in a list
 best_matches = []
 
